@@ -3,7 +3,7 @@ export interface UserInput {
   email: string;
   password: string;
   age: number;
-  roles: string[];
+  roles: ("client" | "superadmin" | "manager")[];
 }
 
 export interface UserInputUpdate {
@@ -22,7 +22,7 @@ export interface UserLoginResponse {
     id: string;
     name: string;
     email: string;
-    roles: string[];
+    roles: ("client" | "superadmin" | "manager")[];
     token: string;
     age: number;
   };

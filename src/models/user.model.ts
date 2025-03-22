@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, index: true, unique: true },
     password: { type: String, required: true },
     age: { type: Number, required: true },
-    roles: { type: [String], default: ["user"] },
+    roles: { type: [String], enum: ["client", "superadmin", "manager"] },
   },
   { timestamps: true, collection: "users" }
 );
