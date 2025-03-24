@@ -1,11 +1,25 @@
-import {IContainer, IFragrance} from "./index";
-  // Personalización del usuario (selección + datos adicionales)
-  export interface ICandleCustomization {
-    user: string; // ID del usuario
-    containerId: IContainer["_id"]; // REFERENCIA a contenedor existente
-    fragranceId: IFragrance["_id"]; // REFERENCIA a fragancia existente
-    customImage: string; // URL de imagen subida
-    status: "draft" | "completed";
-    aiMessage?: string; // Mensaje generado por IA
-    vrPreview?: string; // URL de vista previa VR
-  }
+import { IContainer } from "./container.interface";
+import { IFragrance } from "./fragrance.interface";
+
+// Interfaces para CandleCustomization
+
+export interface ICandleCustomization {
+  user: string;
+  containerId: IContainer["_id"]; // Referencia a Container
+  fragranceId: IFragrance["_id"]; // Referencia a Fragrance
+  customImage: string;
+  status?: "draft" | "completed"; // Estado opcional con valor por defecto
+  aiMessage?: string;
+  vrPreview?: string;
+}
+
+// Entrada de datos para creación y actualización
+export interface CandleCustomizationInput {
+  user: string;
+  containerId: IContainer["_id"];
+  fragranceId: IFragrance["_id"];
+  customImage: string;
+  status?: "draft" | "completed";
+  aiMessage?: string;
+  vrPreview?: string;
+}

@@ -1,11 +1,21 @@
-import { z } from "zod";
+import { object, string, enum as zodEnum } from "zod";
 
-// Esquema para crear una personalización
-export const CandleCustomizationSchema = z.object({
-  user: z.string().min(1),
-  containerId: z.string().regex(/^[0-9a-fA-F]{24}$/), // Validar ObjectId de MongoDB
-  fragranceId: z.string().regex(/^[0-9a-fA-F]{24}$/),
-  customImage: z.string().url(),
-  aiMessage: z.string().optional(),
-  vrPreview: z.string().url().optional(),
+export const candleCustomizationSchema = object({
+  user: string({ required_error: "User ID is required" }),
+  containerId: string({ required_error: "Container ID is required" }).regex(
+    /^[a-fA-F0-9]{24}$/,
+    "Invalid ObjectId format"
+  ),
+  fragranceId: string({ required_error: "Fragrance ID is required" }).regex(
+    /^[a-fA-F0-9]{24}$/,
+    "Invalid ObjectId format"
+  ),
+  customImage: string({ required_error: "Custom image URL is required" }).url(
+    "Invalid URL format"
+  ),
+  status: zodEnum(["draft", "completed"], {
+    errorMap: () => ({ message: "Status must be 'draft' or 'completed'" }),
+  }),
+  aiMessage: string().optional(),
+  vrPreview: string().optional(),
 });
