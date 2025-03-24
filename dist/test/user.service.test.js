@@ -92,7 +92,6 @@ describe("UserService", () => {
                 email: "test@test.com",
                 password: "password123",
             });
-            console.log(JSON.stringify(signStub.args, null, 2));
             expect(signStub.calledWith(sinon_1.default.match({
                 user: {
                     email: mockUser.email,
