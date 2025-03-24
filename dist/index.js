@@ -6,22 +6,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //let express = require("express");
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const routes_1 = require("./routes");
+const routes_1 = __importDefault(require("./routes"));
 const connectionDB_1 = require("./lib/connectionDB");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-app.use('/user', routes_1.userRouter);
+app.use('/', routes_1.default);
 app.get('/', (req, res) => {
     res.send("Hello World");
 });
 app.get('/error', (req, res) => {
-    res.status(500).send("Hello World");
+    res.status(500).send("Error");
 });
 app.get('/notfound', (req, res) => {
-    res.status(404).send("Hello World");
+    res.status(404).send("Not Found");
 });
 connectionDB_1.db.then(() => app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

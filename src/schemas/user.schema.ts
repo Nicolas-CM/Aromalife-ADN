@@ -9,9 +9,9 @@ export const userSchema = object({
     8,
     "Password  must be at least 8 characters long"
   ),
-  age: number({ required_error: "Age is required" }).int(
-    "Age must be a integer"
-  ),
+  age: number({ required_error: "Age is required" })
+    .int("Age must be a integer")
+    .positive("Age must be a positive number"),
   roles: array(
     string().refine(
       (role) => ["client", "superadmin", "manager"].includes(role),

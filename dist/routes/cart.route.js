@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.cartRouter = void 0;
+const express_1 = require("express");
+const controllers_1 = require("../controllers");
+const middlewares_1 = require("../middlewares");
+const schemas_1 = require("../schemas");
+exports.cartRouter = (0, express_1.Router)();
+exports.cartRouter.get("/", middlewares_1.auth, (0, middlewares_1.authorize)(["superadmin", "manager", "client"]), controllers_1.cartController.getAll);
+exports.cartRouter.post("/", middlewares_1.auth, (0, middlewares_1.authorize)(["superadmin", "manager", "client"]), (0, middlewares_1.validateSchema)(schemas_1.cartSchema), controllers_1.cartController.create);
+exports.cartRouter.get("/:id", middlewares_1.auth, (0, middlewares_1.authorize)(["superadmin", "manager", "client"]), controllers_1.cartController.get);
+exports.cartRouter.put("/:id", middlewares_1.auth, (0, middlewares_1.authorize)(["superadmin", "manager", "client"]), (0, middlewares_1.validateSchema)(schemas_1.cartSchema), controllers_1.cartController.update);
+exports.cartRouter.delete("/:id", middlewares_1.auth, (0, middlewares_1.authorize)(["superadmin", "manager", "client"]), controllers_1.cartController.delete);
