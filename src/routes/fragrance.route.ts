@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 import { fragranceController } from "../controllers";
 import { auth, validateSchema, authorize } from "../middlewares";
 import { fragranceSchema } from "../schemas";

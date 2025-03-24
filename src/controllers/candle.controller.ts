@@ -6,9 +6,10 @@ import { candleCustomizationService } from "../services";
 class CandleCustomizationController {
   public async create(req: Request, res: Response) {
     try {
-      const newCustomization: CandleCustomizationDocument = await candleCustomizationService.create(
-        req.body as CandleCustomizationInput
-      );
+      const newCustomization: CandleCustomizationDocument =
+        await candleCustomizationService.create(
+          req.body as CandleCustomizationInput
+        );
       res.status(201).json(newCustomization);
     } catch (error) {
       if (error instanceof ReferenceError) {
@@ -22,9 +23,12 @@ class CandleCustomizationController {
   public async get(req: Request, res: Response) {
     try {
       const id: string = req.params.id;
-      const customization: CandleCustomizationDocument | null = await candleCustomizationService.findById(id);
+      const customization: CandleCustomizationDocument | null =
+        await candleCustomizationService.findById(id);
       if (customization === null) {
-        res.status(404).json({ message: `Customization with id ${id} not found` });
+        res
+          .status(404)
+          .json({ message: `Customization with id ${id} not found` });
         return;
       }
       res.json(customization);
@@ -35,7 +39,8 @@ class CandleCustomizationController {
 
   public async getAll(req: Request, res: Response) {
     try {
-      const customizations: CandleCustomizationDocument[] = await candleCustomizationService.findAll();
+      const customizations: CandleCustomizationDocument[] =
+        await candleCustomizationService.findAll();
       res.json(customizations);
     } catch (error) {
       res.status(500).json(error);
@@ -45,12 +50,15 @@ class CandleCustomizationController {
   public async update(req: Request, res: Response) {
     try {
       const id: string = req.params.id;
-      const customization: CandleCustomizationDocument | null = await candleCustomizationService.update(
-        id,
-        req.body as CandleCustomizationInput
-      );
+      const customization: CandleCustomizationDocument | null =
+        await candleCustomizationService.update(
+          id,
+          req.body as CandleCustomizationInput
+        );
       if (customization === null) {
-        res.status(404).json({ message: `Customization with id ${id} not found` });
+        res
+          .status(404)
+          .json({ message: `Customization with id ${id} not found` });
         return;
       }
       res.json(customization);
@@ -62,9 +70,12 @@ class CandleCustomizationController {
   public async delete(req: Request, res: Response) {
     try {
       const id: string = req.params.id;
-      const customization: CandleCustomizationDocument | null = await candleCustomizationService.delete(id);
+      const customization: CandleCustomizationDocument | null =
+        await candleCustomizationService.delete(id);
       if (customization === null) {
-        res.status(404).json({ message: `Customization with id ${id} not found` });
+        res
+          .status(404)
+          .json({ message: `Customization with id ${id} not found` });
         return;
       }
       res.json(customization);
@@ -74,4 +85,5 @@ class CandleCustomizationController {
   }
 }
 
-export const candleCustomizationController = new CandleCustomizationController();
+export const candleCustomizationController =
+  new CandleCustomizationController();

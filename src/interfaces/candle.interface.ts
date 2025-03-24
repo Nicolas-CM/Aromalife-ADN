@@ -1,10 +1,12 @@
 import { IContainer } from "./container.interface";
 import { IFragrance } from "./fragrance.interface";
+import { IUser } from "./user.interface";
 
 // Interfaces para CandleCustomization
 
 export interface ICandleCustomization {
-  user: string;
+  _id: string;
+  userId: IUser["_id"]; // Referencia a User
   containerId: IContainer["_id"]; // Referencia a Container
   fragranceId: IFragrance["_id"]; // Referencia a Fragrance
   customImage: string;
@@ -15,7 +17,7 @@ export interface ICandleCustomization {
 
 // Entrada de datos para creación y actualización
 export interface CandleCustomizationInput {
-  user: string;
+  userId: IUser["_id"];
   containerId: IContainer["_id"];
   fragranceId: IFragrance["_id"];
   customImage: string;

@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
-import { ICandleCustomization } from "../interfaces/candle.interface";
+import { CandleCustomizationInput } from "../interfaces/candle.interface";
 
-export interface CandleCustomizationDocument extends ICandleCustomization, mongoose.Document {
+export interface CandleCustomizationDocument
+  extends CandleCustomizationInput,
+    mongoose.Document {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
@@ -10,21 +12,21 @@ export interface CandleCustomizationDocument extends ICandleCustomization, mongo
 const candleCustomizationSchema = new mongoose.Schema(
   {
     user: { type: String, required: true },
-    containerId: { 
-      type: mongoose.Schema.Types.ObjectId, 
+    containerId: {
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Container",
-      required: true 
+      required: true,
     },
-    fragranceId: { 
-      type: mongoose.Schema.Types.ObjectId, 
+    fragranceId: {
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Fragrance",
-      required: true 
+      required: true,
     },
     customImage: { type: String, required: true },
-    status: { 
-      type: String, 
-      enum: ["draft", "completed"], 
-      default: "draft" 
+    status: {
+      type: String,
+      enum: ["draft", "completed"],
+      default: "draft",
     },
     aiMessage: { type: String },
     vrPreview: { type: String },
@@ -32,7 +34,8 @@ const candleCustomizationSchema = new mongoose.Schema(
   { timestamps: true, collection: "candle_customizations" }
 );
 
-export const CandleCustomizationModel = mongoose.model<CandleCustomizationDocument>(
-  "CandleCustomization",
-  candleCustomizationSchema
-);
+export const CandleCustomizationModel =
+  mongoose.model<CandleCustomizationDocument>(
+    "CandleCustomization",
+    candleCustomizationSchema
+  );
