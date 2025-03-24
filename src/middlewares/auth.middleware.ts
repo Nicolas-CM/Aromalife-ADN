@@ -14,7 +14,6 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
     token = token.replace("Bearer ", "");
     const decoded: any = jwt.verify(token, process.env.JWT_SECRET || "secret");
     req.body.loggedUser = decoded.user;
-    console.log(decoded);
     req.params.id = decoded.user.id;
     next();
   } catch (error) {
