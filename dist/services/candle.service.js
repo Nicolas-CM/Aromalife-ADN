@@ -40,12 +40,15 @@ class CustomizationService {
     findById(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const customization = yield models_1.CandleCustomizationModel.findById(id)
-                    .populate("containerId") // Trae los datos del contenedor
-                    .populate("fragranceId"); // Trae los datos de la fragancia
-                if (!customization)
+                const customization = yield models_1.CandleCustomizationModel.findById(id);
+                if (!customization) {
                     throw new ReferenceError("Personalization not found");
-                return customization;
+                }
+                else {
+                    (yield customization.populate("containerId")) // Trae los datos del contenedor // Trae los datos del contenedor
+                        .populate("fragranceId"); // Trae los datos de la fragancia
+                    return customization;
+                }
             }
             catch (error) {
                 throw error;

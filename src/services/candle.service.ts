@@ -34,12 +34,14 @@ class CustomizationService {
     id: string
   ): Promise<CandleCustomizationDocument | null> {
     try {
-      const customization = await CandleCustomizationModel.findById(id)
-        .populate("containerId") // Trae los datos del contenedor
-        .populate("fragranceId"); // Trae los datos de la fragancia
-
-      if (!customization) throw new ReferenceError("Personalization not found");
-      return customization;
+      const customization = await CandleCustomizationModel.findById(id);
+      if (!customization) {
+        throw new ReferenceError("Personalization not found");
+      } else {
+        (await customization.populate("containerId")) // Trae los datos del contenedor // Trae los datos del contenedor
+          .populate("fragranceId"); // Trae los datos de la fragancia
+        return customization;
+      }
     } catch (error) {
       throw error;
     }
