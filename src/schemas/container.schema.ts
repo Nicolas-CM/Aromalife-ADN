@@ -10,7 +10,7 @@ export const containerSchema = object({
     "Invalid URL format"
   ),
   price: number({ required_error: "Price is required" }).min(
-    0,
+    1,
     "Price must be a positive number"
   ),
   height: number({ required_error: "Height is required" }).min(

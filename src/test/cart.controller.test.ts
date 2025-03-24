@@ -42,4 +42,15 @@ describe("CartController", () => {
       expect(mockRes.status).toHaveBeenCalledWith(404);
     });
   });
+
+  describe("delete()", () => {
+    it("debe retornar 404 al eliminar carrito que no existe", async () => {
+      mockReq.params = { id: "cart123" };
+      jest.spyOn(cartService, "delete").mockResolvedValue(null);
+
+      await cartController.delete(mockReq as Request, mockRes as Response);
+
+      expect(mockRes.status).toHaveBeenCalledWith(404);
+    });
+  });
 });
