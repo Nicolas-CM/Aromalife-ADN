@@ -22,7 +22,7 @@ jobs:
           node-version: 18 # Usa la versión de Node que necesites
 
       - name: 📦 Instalar dependencias
-        run: npm install
+        run: npm ci
 
       - name: 🔍 Ejecutar pruebas con Jest
         run: npm test

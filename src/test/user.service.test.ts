@@ -106,8 +106,6 @@ describe("UserService", () => {
         password: "password123",
       });
 
-      console.log(JSON.stringify(signStub.args, null, 2));
-
       expect(
         signStub.calledWith(
           sinon.match({
