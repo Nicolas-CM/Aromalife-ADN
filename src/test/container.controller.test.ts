@@ -15,6 +15,40 @@ describe("ContainerController", () => {
     };
   });
 
+  describe("getAll()", () => {
+    
+    it("debe retornar 500 si ocurre un error inesperado", async () => {
+      jest.spyOn(containerService, "findAll").mockRejectedValue(new Error("Database error"));
+
+      await containerController.getAll(mockReq as Request, mockRes as Response);
+
+      expect(mockRes.status).toHaveBeenCalledWith(500);
+    });
+  });
+
+  describe("update()", () => {
+    it("debe retornar 404 para ID inexistente", async () => {
+      mockReq.params = { id: "invalid-id" };
+      jest.spyOn(containerService, "update").mockResolvedValue(null);
+
+      await containerController.update(mockReq as Request, mockRes as Response);
+
+      expect(mockRes.status).toHaveBeenCalledWith(404);
+      expect(mockRes.json).toHaveBeenCalledWith({
+        message: "Container with id invalid-id not found",
+      });
+    });
+
+    it("debe retornar 500 si ocurre un error inesperado", async () => {
+      mockReq.params = { id: "123" };
+      jest.spyOn(containerService, "update").mockRejectedValue(new Error("Unexpected error"));
+
+      await containerController.update(mockReq as Request, mockRes as Response);
+
+      expect(mockRes.status).toHaveBeenCalledWith(500);
+    });
+  });
+
   describe("create()", () => {
     it("debe calcular el diámetro automáticamente", async () => {
       mockReq.body = {
@@ -37,6 +71,15 @@ describe("ContainerController", () => {
         expect.objectContaining({ diameter: 22.5 })
       );
     });
+
+    it("debe retornar 500 si ocurre un error inesperado", async () => {
+      mockReq.params = { id: "123" };
+      jest.spyOn(containerService, "create").mockRejectedValue(new Error("Unexpected error"));
+
+      await containerController.create(mockReq as Request, mockRes as Response);
+
+      expect(mockRes.status).toHaveBeenCalledWith(500);
+    });
   });
 
   describe("get()", () => {
@@ -51,7 +94,17 @@ describe("ContainerController", () => {
         message: "Container with id invalid-id not found",
       });
     });
+
+    it("debe retornar 500 si ocurre un error inesperado", async () => {
+      mockReq.params = { id: "123" };
+      jest.spyOn(containerService, "findById").mockRejectedValue(new Error("Unexpected error"));
+
+      await containerController.get(mockReq as Request, mockRes as Response);
+
+      expect(mockRes.status).toHaveBeenCalledWith(500);
+    });
   });
+
   describe("delete()", () => {
     it("debe retornar 404 para ID inexistente", async () => {
       mockReq.params = { id: "invalid-id" };
@@ -63,6 +116,15 @@ describe("ContainerController", () => {
       expect(mockRes.json).toHaveBeenCalledWith({
         message: "Container with id invalid-id not found",
       });
+    });
+
+    it("debe retornar 500 si ocurre un error inesperado", async () => {
+      mockReq.params = { id: "123" };
+      jest.spyOn(containerService, "delete").mockRejectedValue(new Error("Unexpected error"));
+
+      await containerController.delete(mockReq as Request, mockRes as Response);
+
+      expect(mockRes.status).toHaveBeenCalledWith(500);
     });
   });
 });

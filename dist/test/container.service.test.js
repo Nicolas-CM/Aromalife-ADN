@@ -57,6 +57,11 @@ describe("ContainerService", () => {
                 returnOriginal: false,
             })).toBeTruthy();
         }));
+        it("debe retornar null si no se encuentra el contenedor", () => __awaiter(void 0, void 0, void 0, function* () {
+            findOneAndUpdateStub.resolves(null);
+            const result = yield services_1.containerService.update("invalid-id", {});
+            expect(result).toBeNull();
+        }));
     });
     describe("delete()", () => {
         it("debe eliminar un contenedor existente", () => __awaiter(void 0, void 0, void 0, function* () {
@@ -78,6 +83,11 @@ describe("ContainerService", () => {
                 width: 10,
             });
             expect(findByIdAndDeleteStub.calledWith("123")).toBeTruthy();
+        }));
+        it("debe retornar null si no se encuentra el contenedor", () => __awaiter(void 0, void 0, void 0, function* () {
+            findByIdAndDeleteStub.resolves(null);
+            const result = yield services_1.containerService.delete("invalid-id");
+            expect(result).toBeNull();
         }));
     });
     describe("get()", () => {
@@ -118,6 +128,11 @@ describe("ContainerService", () => {
             const result = yield services_1.containerService.findById("123");
             expect(result).toMatchObject(container);
             expect(findByIdStub.calledWith("123")).toBeTruthy();
+        }));
+        it("debe retornar null si no se encuentra el contenedor", () => __awaiter(void 0, void 0, void 0, function* () {
+            findByIdStub.resolves(null);
+            const result = yield services_1.containerService.findById("invalid-id");
+            expect(result).toBeNull();
         }));
     });
 });

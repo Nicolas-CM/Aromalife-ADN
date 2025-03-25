@@ -116,7 +116,7 @@ describe("UserService", () => {
             },
           }),
           process.env.JWT_SECRET,
-          sinon.match({ expiresIn: "10m" }) // Valida solo la parte relevante
+          sinon.match({ expiresIn: "10m" })
         )
       ).toBeTruthy();
 
@@ -134,21 +134,66 @@ describe("UserService", () => {
       ).rejects.toThrow(AuthError);
     });
 
-    it("Debería manejar error de comparación de contraseñas", async () => {
+    it("Debería lanzar error si la contraseña es incorrecta", async () => {
       const mockUser = {
         email: "test@test.com",
-        password: "hashedPassword",
+        password: await bcrypt.hash("password123", 10),
       };
 
       findOneStub.resolves(mockUser);
-      compareStub.rejects(new Error("Comparison error"));
+      compareStub.resolves(false);
+
+      await expect(
+        userService.login({
+          email: "test@test.com",
+          password: "wrongpassword",
+        })
+      ).rejects.toThrow(AuthError);
+    });
+
+    it("Debería manejar error inesperado en findOne", async () => {
+      findOneStub.rejects(new Error("Unexpected error"));
 
       await expect(
         userService.login({
           email: "test@test.com",
           password: "password123",
         })
-      ).rejects.toThrow("Comparison error");
+      ).rejects.toThrow("Unexpected error");
+    });
+  });
+
+  describe("findById()", () => {
+    it("Debería retornar el usuario si se encuentra", async () => {
+      const mockUser = {
+        _id: "123",
+        email: "test@test.com",
+        name: "Test User",
+      };
+
+      findOneStub.resolves(mockUser);
+
+      const result = await userService.findById("123");
+
+      expect(findOneStub.calledWith({ _id: "123" })).toBeTruthy();
+      expect(result).toMatchObject(mockUser);
+    });
+
+    it("Debería retornar null si no se encuentra el usuario", async () => {
+      findOneStub.resolves(null);
+
+      const result = await userService.findById("invalid-id");
+
+      expect(findOneStub.calledWith({ _id: "invalid-id" })).toBeTruthy();
+      expect(result).toBeNull();
+    });
+
+    it("Debería manejar error inesperado en findOne", async () => {
+      findOneStub.rejects(new Error("Unexpected error"));
+
+      await expect(userService.findById("123")).rejects.toThrow(
+        "Unexpected error"
+      );
     });
   });
 });

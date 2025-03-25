@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for routes/cart.route.ts</title>
+    <title>Code coverage report for routes/candle.route.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">routes</a> cart.route.ts</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">routes</a> candle.route.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -106,26 +106,17 @@
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -135,7 +126,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -150,47 +160,52 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Router } from "express";
-import { cartController } from "../controllers";
+import { candleCustomizationController } from "../controllers";
 import { auth, validateSchema, authorize } from "../middlewares";
-import { cartSchema } from "../schemas";
+import { candleCustomizationSchema } from "../schemas";
 &nbsp;
-export const cartRouter = Router();
+export const candleRouter = Router();
 &nbsp;
-cartRouter.get(
+// Obtener todas las personalizaciones de velas (accesible solo para superadmin y manager)
+candleRouter.get(
   "/",
   auth,
   authorize(["superadmin", "manager", "client"]),
-  cartController.getAll
+  candleCustomizationController.getAll
 );
 &nbsp;
-cartRouter.post(
+// Crear una nueva personalización de vela (solo superadmin)
+candleRouter.post(
   "/",
   auth,
-  authorize(["superadmin", "manager", "client"]),
-  validateSchema(cartSchema),
-  cartController.create
+  authorize(["superadmin"]),
+  validateSchema(candleCustomizationSchema),
+  candleCustomizationController.create
 );
 &nbsp;
-cartRouter.get(
+// Obtener una personalización de vela por ID (accesible para todos los roles autenticados)
+candleRouter.get(
   "/:id",
   auth,
   authorize(["superadmin", "manager", "client"]),
-  cartController.get
+  candleCustomizationController.get
 );
 &nbsp;
-cartRouter.put(
+// Actualizar una personalización de vela por ID (solo superadmin)
+candleRouter.put(
   "/:id",
   auth,
-  authorize(["superadmin", "manager", "client"]),
-  validateSchema(cartSchema),
-  cartController.update
+  authorize(["superadmin"]),
+  validateSchema(candleCustomizationSchema),
+  candleCustomizationController.update
 );
 &nbsp;
-cartRouter.delete(
+// Eliminar una personalización de vela por ID (solo superadmin)
+candleRouter.delete(
   "/:id",
   auth,
-  authorize(["superadmin", "manager", "client"]),
-  cartController.delete
+  authorize(["superadmin"]),
+  candleCustomizationController.delete
 );
 &nbsp;</pre></td></tr></table></pre>
 

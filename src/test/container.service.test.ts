@@ -64,6 +64,14 @@ describe("ContainerService", () => {
         })
       ).toBeTruthy();
     });
+
+    it("debe retornar null si no se encuentra el contenedor", async () => {
+      findOneAndUpdateStub.resolves(null);
+
+      const result = await containerService.update("invalid-id", {});
+
+      expect(result).toBeNull();
+    });
   });
 
   describe("delete()", () => {
@@ -88,6 +96,14 @@ describe("ContainerService", () => {
         width: 10,
       });
       expect(findByIdAndDeleteStub.calledWith("123")).toBeTruthy();
+    });
+
+    it("debe retornar null si no se encuentra el contenedor", async () => {
+      findByIdAndDeleteStub.resolves(null);
+
+      const result = await containerService.delete("invalid-id");
+
+      expect(result).toBeNull();
     });
   });
 
@@ -136,6 +152,14 @@ describe("ContainerService", () => {
 
       expect(result).toMatchObject(container);
       expect(findByIdStub.calledWith("123")).toBeTruthy();
+    });
+
+    it("debe retornar null si no se encuentra el contenedor", async () => {
+      findByIdStub.resolves(null);
+
+      const result = await containerService.findById("invalid-id");
+
+      expect(result).toBeNull();
     });
   });
 });

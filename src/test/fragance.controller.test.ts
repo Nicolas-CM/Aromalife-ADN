@@ -15,6 +15,31 @@ describe("FragranceController", () => {
     };
   });
 
+  describe("create()", () => {
+
+    it("debe retornar 400 si la fragancia ya existe", async () => {
+      mockReq.body = { name: "Lavender", color: "#00FF00" };
+      jest.spyOn(fragranceService, "create").mockRejectedValue(new ReferenceError());
+
+      await fragranceController.create(mockReq as Request, mockRes as Response);
+
+      expect(mockRes.status).toHaveBeenCalledWith(400);
+    });
+  });
+
+  describe("get()", () => {
+   
+
+    it("debe retornar 404 si no se encuentra la fragancia", async () => {
+      mockReq.params = { id: "123" };
+      jest.spyOn(fragranceService, "findById").mockResolvedValue(null);
+
+      await fragranceController.get(mockReq as Request, mockRes as Response);
+
+      expect(mockRes.status).toHaveBeenCalledWith(404);
+    });
+  });
+
   describe("update()", () => {
     it("debe retornar 404 si no existe la fragancia", async () => {
       mockReq.params = { id: "123" };
@@ -25,6 +50,17 @@ describe("FragranceController", () => {
       await fragranceController.update(mockReq as Request, mockRes as Response);
 
       expect(mockRes.status).toHaveBeenCalledWith(404);
+    });
+
+    it("debe manejar error del servicio y retornar 500", async () => {
+      mockReq.params = { id: "123" };
+      mockReq.body = { color: "#00FF00" };
+
+      jest.spyOn(fragranceService, "update").mockRejectedValue(new Error("Service error"));
+
+      await fragranceController.update(mockReq as Request, mockRes as Response);
+
+      expect(mockRes.status).toHaveBeenCalledWith(500);
     });
   });
 
@@ -38,6 +74,16 @@ describe("FragranceController", () => {
 
       expect(mockRes.status).toHaveBeenCalledWith(404);
     });
+
+    it("debe manejar error del servicio y retornar 500", async () => {
+      mockReq.params = { id: "123" };
+
+      jest.spyOn(fragranceService, "delete").mockRejectedValue(new Error("Service error"));
+
+      await fragranceController.delete(mockReq as Request, mockRes as Response);
+
+      expect(mockRes.status).toHaveBeenCalledWith(500);
+    });
   });
 
   describe("getAll()", () => {
@@ -50,5 +96,7 @@ describe("FragranceController", () => {
 
       expect(mockRes.status).toHaveBeenCalledWith(500);
     });
+
+   
   });
 });

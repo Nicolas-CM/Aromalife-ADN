@@ -81,5 +81,39 @@ describe("CartService", () => {
         })
       ).toBeTruthy();
     });
+
+    it("debe lanzar error si producto no existe", async () => {
+      const updateInput = {
+        items: [
+          {
+            candleId: "invalid-candle-id",
+            quantity: 2,
+          },
+        ],
+      };
+
+      existsStub.withArgs({ _id: updateInput.items[0].candleId }).resolves(false);
+
+      await expect(cartService.update("123", updateInput)).rejects.toThrow(
+        "Candle with id invalid-candle-id does not exist"
+      );
+    });
+  });
+
+  describe("delete()", () => {
+    it("debe eliminar carrito existente", async () => {
+      findByIdAndDeleteStub.resolves({ _id: "123" });
+
+      const result = await cartService.delete("123");
+
+      expect(result).toHaveProperty("_id", "123");
+      expect(findByIdAndDeleteStub.calledWith("123")).toBeTruthy();
+    });
+
+    it("debe lanzar error si carrito no existe", async () => {
+      findByIdAndDeleteStub.resolves(null);
+
+      await expect(cartService.delete("invalid-id")).resolves.toBeNull();
+    });
   });
 });

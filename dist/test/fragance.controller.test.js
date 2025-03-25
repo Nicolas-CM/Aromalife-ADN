@@ -22,6 +22,22 @@ describe("FragranceController", () => {
             send: jest.fn(),
         };
     });
+    describe("create()", () => {
+        it("debe retornar 400 si la fragancia ya existe", () => __awaiter(void 0, void 0, void 0, function* () {
+            mockReq.body = { name: "Lavender", color: "#00FF00" };
+            jest.spyOn(services_1.fragranceService, "create").mockRejectedValue(new ReferenceError());
+            yield controllers_1.fragranceController.create(mockReq, mockRes);
+            expect(mockRes.status).toHaveBeenCalledWith(400);
+        }));
+    });
+    describe("get()", () => {
+        it("debe retornar 404 si no se encuentra la fragancia", () => __awaiter(void 0, void 0, void 0, function* () {
+            mockReq.params = { id: "123" };
+            jest.spyOn(services_1.fragranceService, "findById").mockResolvedValue(null);
+            yield controllers_1.fragranceController.get(mockReq, mockRes);
+            expect(mockRes.status).toHaveBeenCalledWith(404);
+        }));
+    });
     describe("update()", () => {
         it("debe retornar 404 si no existe la fragancia", () => __awaiter(void 0, void 0, void 0, function* () {
             mockReq.params = { id: "123" };
@@ -30,6 +46,13 @@ describe("FragranceController", () => {
             yield controllers_1.fragranceController.update(mockReq, mockRes);
             expect(mockRes.status).toHaveBeenCalledWith(404);
         }));
+        it("debe manejar error del servicio y retornar 500", () => __awaiter(void 0, void 0, void 0, function* () {
+            mockReq.params = { id: "123" };
+            mockReq.body = { color: "#00FF00" };
+            jest.spyOn(services_1.fragranceService, "update").mockRejectedValue(new Error("Service error"));
+            yield controllers_1.fragranceController.update(mockReq, mockRes);
+            expect(mockRes.status).toHaveBeenCalledWith(500);
+        }));
     });
     describe("delete()", () => {
         it("debe retornar 404 si no existe la fragancia", () => __awaiter(void 0, void 0, void 0, function* () {
@@ -37,6 +60,12 @@ describe("FragranceController", () => {
             jest.spyOn(services_1.fragranceService, "delete").mockResolvedValue(null);
             yield controllers_1.fragranceController.delete(mockReq, mockRes);
             expect(mockRes.status).toHaveBeenCalledWith(404);
+        }));
+        it("debe manejar error del servicio y retornar 500", () => __awaiter(void 0, void 0, void 0, function* () {
+            mockReq.params = { id: "123" };
+            jest.spyOn(services_1.fragranceService, "delete").mockRejectedValue(new Error("Service error"));
+            yield controllers_1.fragranceController.delete(mockReq, mockRes);
+            expect(mockRes.status).toHaveBeenCalledWith(500);
         }));
     });
     describe("getAll()", () => {
