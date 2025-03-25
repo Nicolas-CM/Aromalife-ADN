@@ -4,3 +4,4 @@ export * from "./candle.schema";
 export * from "./container.schema";
 export * from "./fragrance.schema";
 export * from "./cart.schema";
+export * from "./gift.schema"; 
