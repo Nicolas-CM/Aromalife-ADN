@@ -11,6 +11,12 @@ describe("Cart Schema", () => {
                     quantity: 2,
                 },
             ],
+            gifts: [
+                {
+                    giftId: "5ebbe53423b8c7a9d3456789",
+                    quantity: 1,
+                },
+            ],
         };
         expect(() => cart_schema_1.cartSchema.parse(validData)).not.toThrow();
     });

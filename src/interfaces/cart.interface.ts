@@ -1,4 +1,4 @@
-import { ICandleCustomization } from "./candle.interface";
+import { ICandleCustomization, IGift  } from "../interfaces";
 
 export interface ICart {
   _id: string;
@@ -7,15 +7,24 @@ export interface ICart {
 }
 
 export interface ICartItem {
-  candleId: ICandleCustomization["_id"];
+  candleId: ICandleCustomization["_id"] 
   quantity: number;
 }
+
+export interface IGiftItem {
+  giftId: IGift["_id"];
+  quantity: number;
+}
+
+
 
 export interface CartInput {
   userId: string;
   items: ICartItem[];
+  gifts?: IGiftItem[];
 }
 
 export interface CartUpdateInput {
   items?: ICartItem[];
+  gifts?: IGiftItem[];
 }

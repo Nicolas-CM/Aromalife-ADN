@@ -19,3 +19,4 @@ __exportStar(require("./candle.service"), exports);
 __exportStar(require("./container.service"), exports);
 __exportStar(require("./fragrance.service"), exports);
 __exportStar(require("./cart.service"), exports);
+__exportStar(require("./gift.service"), exports);

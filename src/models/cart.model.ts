@@ -23,6 +23,16 @@ const cartSchema = new mongoose.Schema(
         quantity: { type: Number, required: true, min: 1 },
       },
     ],
+    gifts: [{
+      giftId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Gift",
+        required: false,
+      },
+      quantity: { type: Number, required: false, min: 1 },
+    }
+
+    ],
   },
   { timestamps: true, collection: "carts" }
 );

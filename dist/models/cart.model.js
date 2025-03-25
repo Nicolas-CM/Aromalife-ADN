@@ -21,5 +21,14 @@ const cartSchema = new mongoose_1.default.Schema({
             quantity: { type: Number, required: true, min: 1 },
         },
     ],
+    gifts: [{
+            giftId: {
+                type: mongoose_1.default.Schema.Types.ObjectId,
+                ref: "Gift",
+                required: false,
+            },
+            quantity: { type: Number, required: false, min: 1 },
+        }
+    ],
 }, { timestamps: true, collection: "carts" });
 exports.CartModel = mongoose_1.default.model("Cart", cartSchema);

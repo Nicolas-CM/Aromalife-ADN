@@ -20,3 +20,4 @@ __exportStar(require("./candle.schema"), exports);
 __exportStar(require("./container.schema"), exports);
 __exportStar(require("./fragrance.schema"), exports);
 __exportStar(require("./cart.schema"), exports);
+__exportStar(require("./gift.schema"), exports);
