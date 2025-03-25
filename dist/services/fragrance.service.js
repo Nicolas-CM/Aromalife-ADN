@@ -15,7 +15,22 @@ class FragranceService {
     create(fragranceInput) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                const fragranceExists = yield this.findByName(fragranceInput.name);
+                if (fragranceExists != null) {
+                    throw new ReferenceError("Fragrance already exists");
+                }
                 const fragrance = yield models_1.FragranceModel.create(fragranceInput);
+                return fragrance;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
+    findByName(name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const fragrance = yield models_1.FragranceModel.findOne({ name });
                 return fragrance;
             }
             catch (error) {

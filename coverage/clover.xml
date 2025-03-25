@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1742931124975" clover="3.2.0">
-  <project timestamp="1742931124975" name="All files">
+<coverage generated="1742933360373" clover="3.2.0">
+  <project timestamp="1742933360373" name="All files">
     <metrics statements="491" coveredstatements="408" conditionals="43" coveredconditionals="33" methods="64" coveredmethods="56" elements="598" coveredelements="497" complexity="0" loc="491" ncloc="491" packages="7" files="35" classes="35"/>
     <package name="controllers">
       <metrics statements="197" coveredstatements="158" conditionals="20" coveredconditionals="17" methods="26" coveredmethods="24"/>
-      <file name="candle.controller.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\controllers\candle.controller.ts">
+      <file name="candle.controller.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\controllers\candle.controller.ts">
         <metrics statements="37" coveredstatements="32" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="5"/>
         <line num="4" count="10" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
@@ -44,7 +44,7 @@
         <line num="83" count="1" type="stmt"/>
         <line num="88" count="10" type="stmt"/>
       </file>
-      <file name="cart.controller.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\controllers\cart.controller.ts">
+      <file name="cart.controller.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\controllers\cart.controller.ts">
         <metrics statements="34" coveredstatements="29" conditionals="3" coveredconditionals="3" methods="5" coveredmethods="5"/>
         <line num="4" count="10" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
@@ -81,7 +81,7 @@
         <line num="68" count="1" type="stmt"/>
         <line num="73" count="10" type="stmt"/>
       </file>
-      <file name="container.controller.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\controllers\container.controller.ts">
+      <file name="container.controller.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\controllers\container.controller.ts">
         <metrics statements="39" coveredstatements="33" conditionals="4" coveredconditionals="3" methods="5" coveredmethods="5"/>
         <line num="4" count="10" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
@@ -123,7 +123,7 @@
         <line num="80" count="1" type="stmt"/>
         <line num="85" count="10" type="stmt"/>
       </file>
-      <file name="fragrance.controller.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\controllers\fragrance.controller.ts">
+      <file name="fragrance.controller.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\controllers\fragrance.controller.ts">
         <metrics statements="37" coveredstatements="30" conditionals="4" coveredconditionals="4" methods="5" coveredmethods="5"/>
         <line num="4" count="10" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
@@ -163,7 +163,7 @@
         <line num="72" count="1" type="stmt"/>
         <line num="77" count="10" type="stmt"/>
       </file>
-      <file name="index.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\controllers\index.ts">
+      <file name="index.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\controllers\index.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="10" type="stmt"/>
         <line num="2" count="10" type="stmt"/>
@@ -171,7 +171,7 @@
         <line num="4" count="10" type="stmt"/>
         <line num="5" count="10" type="stmt"/>
       </file>
-      <file name="user.controller.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\controllers\user.controller.ts">
+      <file name="user.controller.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\controllers\user.controller.ts">
         <metrics statements="45" coveredstatements="29" conditionals="5" coveredconditionals="3" methods="6" coveredmethods="4"/>
         <line num="4" count="10" type="stmt"/>
         <line num="5" count="10" type="stmt"/>
@@ -222,20 +222,20 @@
     </package>
     <package name="exceptions">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="auth.exception.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\exceptions\auth.exception.ts">
+      <file name="auth.exception.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\exceptions\auth.exception.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="15" type="stmt"/>
         <line num="2" count="3" type="stmt"/>
         <line num="3" count="3" type="stmt"/>
       </file>
-      <file name="index.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\exceptions\index.ts">
+      <file name="index.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\exceptions\index.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="15" type="stmt"/>
       </file>
     </package>
     <package name="middlewares">
       <metrics statements="31" coveredstatements="26" conditionals="5" coveredconditionals="3" methods="7" coveredmethods="7"/>
-      <file name="auth.middleware.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\middlewares\auth.middleware.ts">
+      <file name="auth.middleware.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\middlewares\auth.middleware.ts">
         <metrics statements="23" coveredstatements="19" conditionals="5" coveredconditionals="3" methods="4" coveredmethods="4"/>
         <line num="2" count="5" type="stmt"/>
         <line num="4" count="5" type="stmt"/>
@@ -261,12 +261,12 @@
         <line num="33" count="0" type="stmt"/>
         <line num="35" count="1" type="stmt"/>
       </file>
-      <file name="index.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\middlewares\index.ts">
+      <file name="index.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\middlewares\index.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="5" type="stmt"/>
         <line num="2" count="5" type="stmt"/>
       </file>
-      <file name="validateSchema.middleware.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\middlewares\validateSchema.middleware.ts">
+      <file name="validateSchema.middleware.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\middlewares\validateSchema.middleware.ts">
         <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
         <line num="4" count="5" type="stmt"/>
         <line num="5" count="10" type="stmt"/>
@@ -278,31 +278,31 @@
     </package>
     <package name="models">
       <metrics statements="20" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="candle.model.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\models\candle.model.ts">
+      <file name="candle.model.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\models\candle.model.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="17" type="stmt"/>
         <line num="12" count="17" type="stmt"/>
         <line num="37" count="17" type="stmt"/>
       </file>
-      <file name="cart.model.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\models\cart.model.ts">
+      <file name="cart.model.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\models\cart.model.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="17" type="stmt"/>
         <line num="9" count="17" type="stmt"/>
         <line num="30" count="17" type="stmt"/>
       </file>
-      <file name="container.model.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\models\container.model.ts">
+      <file name="container.model.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\models\container.model.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="17" type="stmt"/>
         <line num="10" count="17" type="stmt"/>
         <line num="23" count="17" type="stmt"/>
       </file>
-      <file name="fragrance.model.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\models\fragrance.model.ts">
+      <file name="fragrance.model.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\models\fragrance.model.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="17" type="stmt"/>
         <line num="10" count="17" type="stmt"/>
         <line num="19" count="17" type="stmt"/>
       </file>
-      <file name="index.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\models\index.ts">
+      <file name="index.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\models\index.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="16" type="stmt"/>
         <line num="2" count="16" type="stmt"/>
@@ -310,7 +310,7 @@
         <line num="4" count="16" type="stmt"/>
         <line num="5" count="16" type="stmt"/>
       </file>
-      <file name="user.model.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\models\user.model.ts">
+      <file name="user.model.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\models\user.model.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="16" type="stmt"/>
         <line num="10" count="16" type="stmt"/>
@@ -319,7 +319,7 @@
     </package>
     <package name="routes">
       <metrics statements="52" coveredstatements="52" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="candle.route.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\routes\candle.route.ts">
+      <file name="candle.route.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\routes\candle.route.ts">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -332,7 +332,7 @@
         <line num="34" count="1" type="stmt"/>
         <line num="43" count="1" type="stmt"/>
       </file>
-      <file name="cart.route.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\routes\cart.route.ts">
+      <file name="cart.route.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\routes\cart.route.ts">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -345,7 +345,7 @@
         <line num="30" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
       </file>
-      <file name="container.route.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\routes\container.route.ts">
+      <file name="container.route.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\routes\container.route.ts">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -358,7 +358,7 @@
         <line num="34" count="1" type="stmt"/>
         <line num="43" count="1" type="stmt"/>
       </file>
-      <file name="fragrance.route.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\routes\fragrance.route.ts">
+      <file name="fragrance.route.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\routes\fragrance.route.ts">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -371,7 +371,7 @@
         <line num="34" count="1" type="stmt"/>
         <line num="43" count="1" type="stmt"/>
       </file>
-      <file name="user.route.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\routes\user.route.ts">
+      <file name="user.route.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\routes\user.route.ts">
         <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -389,29 +389,29 @@
     </package>
     <package name="schemas">
       <metrics statements="21" coveredstatements="21" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <file name="candle.schema.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\schemas\candle.schema.ts">
+      <file name="candle.schema.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\schemas\candle.schema.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="7" type="stmt"/>
         <line num="3" count="7" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
       </file>
-      <file name="cart.schema.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\schemas\cart.schema.ts">
+      <file name="cart.schema.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\schemas\cart.schema.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="7" type="stmt"/>
         <line num="3" count="7" type="stmt"/>
         <line num="14" count="7" type="stmt"/>
       </file>
-      <file name="container.schema.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\schemas\container.schema.ts">
+      <file name="container.schema.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\schemas\container.schema.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="7" type="stmt"/>
         <line num="3" count="7" type="stmt"/>
       </file>
-      <file name="fragrance.schema.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\schemas\fragrance.schema.ts">
+      <file name="fragrance.schema.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\schemas\fragrance.schema.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="7" type="stmt"/>
         <line num="3" count="7" type="stmt"/>
       </file>
-      <file name="index.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\schemas\index.ts">
+      <file name="index.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\schemas\index.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="6" type="stmt"/>
         <line num="2" count="6" type="stmt"/>
@@ -420,12 +420,12 @@
         <line num="5" count="6" type="stmt"/>
         <line num="6" count="6" type="stmt"/>
       </file>
-      <file name="login.schema.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\schemas\login.schema.ts">
+      <file name="login.schema.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\schemas\login.schema.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="6" type="stmt"/>
         <line num="3" count="6" type="stmt"/>
       </file>
-      <file name="user.schema.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\schemas\user.schema.ts">
+      <file name="user.schema.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\schemas\user.schema.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="6" type="stmt"/>
         <line num="3" count="6" type="stmt"/>
@@ -434,7 +434,7 @@
     </package>
     <package name="services">
       <metrics statements="166" coveredstatements="127" conditionals="18" coveredconditionals="13" methods="28" coveredmethods="22"/>
-      <file name="candle.service.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\services\candle.service.ts">
+      <file name="candle.service.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\services\candle.service.ts">
         <metrics statements="34" coveredstatements="30" conditionals="7" coveredconditionals="5" methods="5" coveredmethods="4"/>
         <line num="1" count="15" type="stmt"/>
         <line num="6" count="15" type="stmt"/>
@@ -471,7 +471,7 @@
         <line num="88" count="1" type="stmt"/>
         <line num="93" count="15" type="stmt"/>
       </file>
-      <file name="cart.service.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\services\cart.service.ts">
+      <file name="cart.service.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\services\cart.service.ts">
         <metrics statements="35" coveredstatements="25" conditionals="4" coveredconditionals="3" methods="5" coveredmethods="3"/>
         <line num="1" count="15" type="stmt"/>
         <line num="3" count="15" type="stmt"/>
@@ -509,7 +509,7 @@
         <line num="82" count="0" type="stmt"/>
         <line num="87" count="15" type="stmt"/>
       </file>
-      <file name="container.service.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\services\container.service.ts">
+      <file name="container.service.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\services\container.service.ts">
         <metrics statements="22" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
         <line num="1" count="15" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
@@ -534,7 +534,7 @@
         <line num="50" count="0" type="stmt"/>
         <line num="55" count="15" type="stmt"/>
       </file>
-      <file name="fragrance.service.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\services\fragrance.service.ts">
+      <file name="fragrance.service.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\services\fragrance.service.ts">
         <metrics statements="22" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
         <line num="1" count="15" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
@@ -559,7 +559,7 @@
         <line num="50" count="0" type="stmt"/>
         <line num="55" count="15" type="stmt"/>
       </file>
-      <file name="index.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\services\index.ts">
+      <file name="index.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\services\index.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="15" type="stmt"/>
         <line num="2" count="15" type="stmt"/>
@@ -567,7 +567,7 @@
         <line num="4" count="15" type="stmt"/>
         <line num="5" count="15" type="stmt"/>
       </file>
-      <file name="user.service.ts" path="C:\Universidad\Semestre VII\Compunet III\Aromalife-ADN\src\services\user.service.ts">
+      <file name="user.service.ts" path="C:\Users\nicol\OneDrive - Universidad Icesi\University\7 Semestre\CompuNet III\Aromalife-ADN\src\services\user.service.ts">
         <metrics statements="48" coveredstatements="33" conditionals="7" coveredconditionals="5" methods="8" coveredmethods="5"/>
         <line num="1" count="15" type="stmt"/>
         <line num="8" count="15" type="stmt"/>

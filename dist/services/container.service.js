@@ -15,7 +15,22 @@ class ContainerService {
     create(containerInput) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                const containerExists = yield this.findByName(containerInput.name);
+                if (containerExists != null) {
+                    throw new ReferenceError("Container already exists");
+                }
                 const container = yield models_1.ContainerModel.create(containerInput);
+                return container;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
+    findByName(name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const container = yield models_1.ContainerModel.findOne({ name });
                 return container;
             }
             catch (error) {

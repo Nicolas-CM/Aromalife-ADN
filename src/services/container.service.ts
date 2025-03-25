@@ -4,12 +4,26 @@ import { ContainerInput, ContainerUpdateInput } from "../interfaces";
 class ContainerService {
   public async create(containerInput: ContainerInput): Promise<ContainerDocument> {
     try {
+      const containerExists: ContainerDocument | null = await this.findByName(containerInput.name);
+            if (containerExists != null) {
+              throw new ReferenceError("Container already exists");
+            }
+
       const container: ContainerDocument = await ContainerModel.create(containerInput);
       return container;
     } catch (error) {
       throw error;
     }
   }
+
+  public async findByName(name: string): Promise<ContainerDocument | null> {
+      try {
+        const container = await ContainerModel.findOne({ name });
+        return container;
+      } catch (error) {
+        throw error;
+      }
+    }
 
   public async findAll(): Promise<ContainerDocument[]> {
     try {

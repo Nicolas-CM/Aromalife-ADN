@@ -9,7 +9,7 @@ export interface ContainerDocument extends ContainerInput, mongoose.Document {
 
 const containerSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true, minlength: 3 },
+    name: { type: String, required: true, minlength: 3, unique: true },
     description: { type: String, default: "" },
     imageUrl: { type: String, required: true },
     price: { type: Number, required: true, min: 0 },

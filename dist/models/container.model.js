@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ContainerModel = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const containerSchema = new mongoose_1.default.Schema({
-    name: { type: String, required: true, minlength: 3 },
+    name: { type: String, required: true, minlength: 3, unique: true },
     description: { type: String, default: "" },
     imageUrl: { type: String, required: true },
     price: { type: Number, required: true, min: 0 },
