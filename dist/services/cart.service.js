@@ -30,6 +30,15 @@ class CartService {
                         throw new Error(`Candle with id ${item.candleId} does not exist`);
                     }
                 }
+                // Verificar si los regalos existen
+                if (cartInput.gifts) {
+                    for (const item of cartInput.gifts) {
+                        const giftExists = yield models_2.GiftModel.exists({ _id: item.giftId });
+                        if (!giftExists) {
+                            throw new Error(`Gift with id ${item.giftId} does not exist`);
+                        }
+                    }
+                }
                 const cart = yield models_1.CartModel.create(cartInput);
                 return cart;
             }
@@ -71,6 +80,15 @@ class CartService {
                         });
                         if (!candleExists) {
                             throw new Error(`Candle with id ${item.candleId} does not exist`);
+                        }
+                    }
+                }
+                // Verificar si los regalos existen
+                if (cartInput.gifts) {
+                    for (const item of cartInput.gifts) {
+                        const giftExists = yield models_2.GiftModel.exists({ _id: item.giftId });
+                        if (!giftExists) {
+                            throw new Error(`Gift with id ${item.giftId} does not exist`);
                         }
                     }
                 }

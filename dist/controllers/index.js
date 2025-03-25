@@ -19,3 +19,4 @@ __exportStar(require("./candle.controller"), exports);
 __exportStar(require("./container.controller"), exports);
 __exportStar(require("./fragrance.controller"), exports);
 __exportStar(require("./cart.controller"), exports);
+__exportStar(require("./gift.controller"), exports);

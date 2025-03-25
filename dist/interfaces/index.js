@@ -19,3 +19,4 @@ __exportStar(require("./candle.interface"), exports);
 __exportStar(require("./container.interface"), exports);
 __exportStar(require("./fragrance.interface"), exports);
 __exportStar(require("./cart.interface"), exports);
+__exportStar(require("./gift.interface"), exports);

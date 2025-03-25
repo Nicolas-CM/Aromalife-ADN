@@ -19,3 +19,4 @@ __exportStar(require("./candle.model"), exports);
 __exportStar(require("./container.model"), exports);
 __exportStar(require("./fragrance.model"), exports);
 __exportStar(require("./cart.model"), exports);
+__exportStar(require("./gift.model"), exports);

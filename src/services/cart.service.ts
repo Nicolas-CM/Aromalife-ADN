@@ -1,6 +1,6 @@
 import { CartDocument, CartModel } from "../models";
 import { CartInput, CartUpdateInput } from "../interfaces";
-import { UserModel, CandleCustomizationModel } from "../models";
+import { UserModel, CandleCustomizationModel, GiftModel } from "../models";
 
 class CartService {
   public async create(cartInput: CartInput): Promise<CartDocument> {
@@ -18,6 +18,16 @@ class CartService {
         });
         if (!candleExists) {
           throw new Error(`Candle with id ${item.candleId} does not exist`);
+        }
+      }
+
+      // Verificar si los regalos existen
+      if (cartInput.gifts) {
+        for (const item of cartInput.gifts) {
+          const giftExists = await GiftModel.exists({ _id: item.giftId });
+          if (!giftExists) {
+            throw new Error(`Gift with id ${item.giftId} does not exist`);
+          }
         }
       }
 
@@ -59,6 +69,16 @@ class CartService {
           });
           if (!candleExists) {
             throw new Error(`Candle with id ${item.candleId} does not exist`);
+          }
+        }
+      }
+
+      // Verificar si los regalos existen
+      if (cartInput.gifts) {
+        for (const item of cartInput.gifts) {
+          const giftExists = await GiftModel.exists({ _id: item.giftId });
+          if (!giftExists) {
+            throw new Error(`Gift with id ${item.giftId} does not exist`);
           }
         }
       }
