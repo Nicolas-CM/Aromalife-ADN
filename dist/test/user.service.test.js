@@ -98,8 +98,7 @@ describe("UserService", () => {
                     name: mockUser.name,
                     roles: mockUser.roles,
                 },
-            }), process.env.JWT_SECRET, sinon_1.default.match({ expiresIn: "10m" }) // Valida solo la parte relevante
-            )).toBeTruthy();
+            }), process.env.JWT_SECRET, sinon_1.default.match({ expiresIn: "10m" }))).toBeTruthy();
             expect(result === null || result === void 0 ? void 0 : result.user.token).toBe("fake.jwt.token");
         }));
         it("Debería lanzar error con credenciales incorrectas", () => __awaiter(void 0, void 0, void 0, function* () {
@@ -109,17 +108,47 @@ describe("UserService", () => {
                 password: "wrong",
             })).rejects.toThrow(exceptions_1.AuthError);
         }));
-        it("Debería manejar error de comparación de contraseñas", () => __awaiter(void 0, void 0, void 0, function* () {
+        it("Debería lanzar error si la contraseña es incorrecta", () => __awaiter(void 0, void 0, void 0, function* () {
             const mockUser = {
                 email: "test@test.com",
-                password: "hashedPassword",
+                password: yield bcrypt_1.default.hash("password123", 10),
             };
             findOneStub.resolves(mockUser);
-            compareStub.rejects(new Error("Comparison error"));
+            compareStub.resolves(false);
+            yield expect(services_1.userService.login({
+                email: "test@test.com",
+                password: "wrongpassword",
+            })).rejects.toThrow(exceptions_1.AuthError);
+        }));
+        it("Debería manejar error inesperado en findOne", () => __awaiter(void 0, void 0, void 0, function* () {
+            findOneStub.rejects(new Error("Unexpected error"));
             yield expect(services_1.userService.login({
                 email: "test@test.com",
                 password: "password123",
-            })).rejects.toThrow("Comparison error");
+            })).rejects.toThrow("Unexpected error");
+        }));
+    });
+    describe("findById()", () => {
+        it("Debería retornar el usuario si se encuentra", () => __awaiter(void 0, void 0, void 0, function* () {
+            const mockUser = {
+                _id: "123",
+                email: "test@test.com",
+                name: "Test User",
+            };
+            findOneStub.resolves(mockUser);
+            const result = yield services_1.userService.findById("123");
+            expect(findOneStub.calledWith({ _id: "123" })).toBeTruthy();
+            expect(result).toMatchObject(mockUser);
+        }));
+        it("Debería retornar null si no se encuentra el usuario", () => __awaiter(void 0, void 0, void 0, function* () {
+            findOneStub.resolves(null);
+            const result = yield services_1.userService.findById("invalid-id");
+            expect(findOneStub.calledWith({ _id: "invalid-id" })).toBeTruthy();
+            expect(result).toBeNull();
+        }));
+        it("Debería manejar error inesperado en findOne", () => __awaiter(void 0, void 0, void 0, function* () {
+            findOneStub.rejects(new Error("Unexpected error"));
+            yield expect(services_1.userService.findById("123")).rejects.toThrow("Unexpected error");
         }));
     });
 });

@@ -67,6 +67,7 @@ describe("FragranceService", () => {
       expect(result?._id).toBe(fragranceId);
     });
   });
+
   describe("findAll()", () => {
     it("debe retornar todas las fragancias", async () => {
       const fragrances = [

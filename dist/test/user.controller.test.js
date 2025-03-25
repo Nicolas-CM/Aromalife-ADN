@@ -15,7 +15,6 @@ const exceptions_1 = require("../exceptions");
 describe("UserController", () => {
     let mockReq;
     let mockRes;
-    let mockNext;
     beforeEach(() => {
         mockReq = {};
         mockRes = {
@@ -23,7 +22,6 @@ describe("UserController", () => {
             json: jest.fn(),
             send: jest.fn(),
         };
-        mockNext = jest.fn();
     });
     describe("create()", () => {
         it("Debería retornar 201 al crear usuario exitosamente", () => __awaiter(void 0, void 0, void 0, function* () {
@@ -48,6 +46,13 @@ describe("UserController", () => {
             expect(mockRes.json).toHaveBeenCalledWith({
                 message: "User already exists",
             });
+        }));
+        it("Debería retornar 500 en error inesperado", () => __awaiter(void 0, void 0, void 0, function* () {
+            mockReq.body = { email: "error@test.com" };
+            jest.spyOn(services_1.userService, "create").mockRejectedValue(new Error("Unexpected"));
+            yield controllers_1.userController.create(mockReq, mockRes);
+            expect(mockRes.status).toHaveBeenCalledWith(500);
+            expect(mockRes.json).toHaveBeenCalledWith(new Error("Unexpected"));
         }));
     });
     describe("login()", () => {
@@ -79,6 +84,31 @@ describe("UserController", () => {
             yield controllers_1.userController.login(mockReq, mockRes);
             expect(mockRes.status).toHaveBeenCalledWith(401);
             expect(mockRes.json).toHaveBeenCalledWith({ message: "Not Authorized" });
+        }));
+        it("Debería retornar 500 en error inesperado", () => __awaiter(void 0, void 0, void 0, function* () {
+            mockReq.body = { email: "error@test.com", password: "error" };
+            jest.spyOn(services_1.userService, "login").mockRejectedValue(new Error("Unexpected"));
+            yield controllers_1.userController.login(mockReq, mockRes);
+            expect(mockRes.status).toHaveBeenCalledWith(500);
+            expect(mockRes.json).toHaveBeenCalledWith(new Error("Unexpected"));
+        }));
+    });
+    describe("delete()", () => {
+        it("Debería retornar 404 al eliminar usuario que no existe", () => __awaiter(void 0, void 0, void 0, function* () {
+            mockReq.params = { id: "user123" };
+            jest.spyOn(services_1.userService, "delete").mockResolvedValue(null);
+            yield controllers_1.userController.delete(mockReq, mockRes);
+            expect(mockRes.status).toHaveBeenCalledWith(404);
+            expect(mockRes.json).toHaveBeenCalledWith({
+                message: "User with id user123 not found",
+            });
+        }));
+        it("Debería retornar 500 en error inesperado", () => __awaiter(void 0, void 0, void 0, function* () {
+            mockReq.params = { id: "user123" };
+            jest.spyOn(services_1.userService, "delete").mockRejectedValue(new Error("Unexpected"));
+            yield controllers_1.userController.delete(mockReq, mockRes);
+            expect(mockRes.status).toHaveBeenCalledWith(500);
+            expect(mockRes.json).toHaveBeenCalledWith(new Error("Unexpected"));
         }));
     });
 });
