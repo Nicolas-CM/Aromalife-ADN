@@ -20,12 +20,19 @@ La API establece una relación clara entre los diferentes módulos para garantiz
 
 
 
-## Modelo de base de datos
+## Modelo de Base de Datos
 
-El modelo de base de datos de este proyecto se puede visualizar en el archivo pdf en la ruta:
+El modelo de base de datos está diseñado para reflejar las relaciones entre las entidades principales de la aplicación. A continuación, se describen las relaciones más importantes:
+
+- **User:** Los usuarios pueden tener diferentes roles (superadmin, manager, client) y están relacionados con los carritos de compras que crean.
+- **Fragrance and Container:** Estas entidades representan los componentes básicos para personalizar velas. Cada vela personalizada se crea combinando una fragancia y un contenedor.
+- **Candle:** Están relacionadas tanto con las fragancias como con los contenedores, permitiendo crear productos únicos según las preferencias del usuario.
+- **Cart:** Cada carrito puede contener múltiples velas personalizadas y regalos, y está asociado a un usuario específico.
+- **Gift:** Son productos adicionales que los usuarios pueden agregar a su carrito junto con las velas personalizadas.
+
+Para más detalles, el modelo lógico de la base de datos se encuentra en el archivo PDF disponible en la ruta:
 ```files
 docs/modelo de datos/Logical.pdf
-```
 
 ## Instalación y Configuración
 
@@ -107,6 +114,10 @@ docs/modelo de datos/Logical.pdf
 
 ## Pruebas
 Todas las pruebas unitarias e integración alcanzan más del 80% de cobertura, garantizando la validación de la lógica de negocio y el correcto funcionamiento de los módulos implimentados hasta ahora.
+Esto se puede evidenciar en el resultado de las pruebas en este archivo:
+```cmd
+docs/coverage/Icov-report/index.html
+```
 
 ### Pruebas Unitarias
 Ejecutar los tests con:
