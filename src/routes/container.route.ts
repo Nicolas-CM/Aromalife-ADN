@@ -1,48 +1,61 @@
+// Importing the Router from Express
 import { Router } from "express";
+
+// Importing the container controller
 import { containerController } from "../controllers";
+
+// Importing middlewares for authentication, schema validation, and authorization
 import { auth, validateSchema, authorize } from "../middlewares";
+
+// Importing the schema for container validation
 import { containerSchema } from "../schemas";
 
+// Creating a new router instance for container routes
 export const containerRouter = Router();
 
-// Obtener todos los contenedores (accesible solo para superadmin y manager)
+// Route to get all containers
+// Accessible only for superadmin, manager, and client roles
 containerRouter.get(
   "/",
-  auth,
-  authorize(["superadmin", "manager", "client"]),
-  containerController.getAll
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin", "manager", "client"]), // Middleware to authorize specific roles
+  containerController.getAll // Controller method to handle the request
 );
 
-// Crear un nuevo contenedor (solo superadmin)
+// Route to create a new container
+// Accessible only for superadmin role
 containerRouter.post(
   "/",
-  auth,
-  authorize(["superadmin"]),
-  validateSchema(containerSchema),
-  containerController.create
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin"]), // Middleware to authorize the superadmin role
+  validateSchema(containerSchema), // Middleware to validate the request body against the schema
+  containerController.create // Controller method to handle the request
 );
 
-// Obtener un contenedor por ID (accesible para todos los roles autenticados)
+// Route to get a container by ID
+// Accessible for all authenticated roles
 containerRouter.get(
   "/:id",
-  auth,
-  authorize(["superadmin", "manager", "client"]),
-  containerController.get
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin", "manager", "client"]), // Middleware to authorize specific roles
+  containerController.get // Controller method to handle the request
 );
 
-// Actualizar un contenedor por ID (solo superadmin)
+// Route to update a container by ID
+// Accessible only for superadmin role
 containerRouter.put(
   "/:id",
-  auth,
-  authorize(["superadmin"]),
-  validateSchema(containerSchema),
-  containerController.update
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin"]), // Middleware to authorize the superadmin role
+  validateSchema(containerSchema), // Middleware to validate the request body against the schema
+  containerController.update // Controller method to handle the request
 );
 
-// Eliminar un contenedor por ID (solo superadmin)
+// Route to delete a container by ID
+// Accessible only for superadmin role
 containerRouter.delete(
   "/:id",
-  auth,
-  authorize(["superadmin"]),
-  containerController.delete
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin"]), // Middleware to authorize the superadmin role
+  containerController.delete // Controller method to handle the request
 );

@@ -1,48 +1,61 @@
+// Importing the Router from Express
 import { Router } from "express";
+
+// Importing the candle customization controller
 import { candleCustomizationController } from "../controllers";
+
+// Importing middlewares for authentication, schema validation, and authorization
 import { auth, validateSchema, authorize } from "../middlewares";
+
+// Importing the schema for candle customization validation
 import { candleCustomizationSchema } from "../schemas";
 
+// Creating a new router instance for candle routes
 export const candleRouter = Router();
 
-// Obtener todas las personalizaciones de velas (accesible solo para superadmin y manager)
+// Route to get all candle customizations
+// Accessible only for superadmin, manager, and client roles
 candleRouter.get(
   "/",
-  auth,
-  authorize(["superadmin", "manager", "client"]),
-  candleCustomizationController.getAll
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin", "manager", "client"]), // Middleware to authorize specific roles
+  candleCustomizationController.getAll // Controller method to handle the request
 );
 
-// Crear una nueva personalización de vela (solo superadmin)
+// Route to create a new candle customization
+// Accessible only for superadmin role
 candleRouter.post(
   "/",
-  auth,
-  authorize(["superadmin"]),
-  validateSchema(candleCustomizationSchema),
-  candleCustomizationController.create
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin"]), // Middleware to authorize the superadmin role
+  validateSchema(candleCustomizationSchema), // Middleware to validate the request body against the schema
+  candleCustomizationController.create // Controller method to handle the request
 );
 
-// Obtener una personalización de vela por ID (accesible para todos los roles autenticados)
+// Route to get a candle customization by ID
+// Accessible for all authenticated roles
 candleRouter.get(
   "/:id",
-  auth,
-  authorize(["superadmin", "manager", "client"]),
-  candleCustomizationController.get
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin", "manager", "client"]), // Middleware to authorize specific roles
+  candleCustomizationController.get // Controller method to handle the request
 );
 
-// Actualizar una personalización de vela por ID (solo superadmin)
+// Route to update a candle customization by ID
+// Accessible only for superadmin role
 candleRouter.put(
   "/:id",
-  auth,
-  authorize(["superadmin"]),
-  validateSchema(candleCustomizationSchema),
-  candleCustomizationController.update
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin"]), // Middleware to authorize the superadmin role
+  validateSchema(candleCustomizationSchema), // Middleware to validate the request body against the schema
+  candleCustomizationController.update // Controller method to handle the request
 );
 
-// Eliminar una personalización de vela por ID (solo superadmin)
+// Route to delete a candle customization by ID
+// Accessible only for superadmin role
 candleRouter.delete(
   "/:id",
-  auth,
-  authorize(["superadmin"]),
-  candleCustomizationController.delete
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin"]), // Middleware to authorize the superadmin role
+  candleCustomizationController.delete // Controller method to handle the request
 );

@@ -1,18 +1,45 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fragranceRouter = void 0;
+// Importing the Router from Express
 const express_1 = require("express");
+// Importing the fragrance controller
 const controllers_1 = require("../controllers");
+// Importing middlewares for authentication, schema validation, and authorization
 const middlewares_1 = require("../middlewares");
+// Importing the schema for fragrance validation
 const schemas_1 = require("../schemas");
+// Creating a new router instance for fragrance routes
 exports.fragranceRouter = (0, express_1.Router)();
-// Obtener todas las fragancias (accesible solo para superadmin y manager)
-exports.fragranceRouter.get("/", middlewares_1.auth, (0, middlewares_1.authorize)(["superadmin", "manager", "client"]), controllers_1.fragranceController.getAll);
-// Crear una nueva fragancia (solo superadmin)
-exports.fragranceRouter.post("/", middlewares_1.auth, (0, middlewares_1.authorize)(["superadmin"]), (0, middlewares_1.validateSchema)(schemas_1.fragranceSchema), controllers_1.fragranceController.create);
-// Obtener una fragancia por ID (accesible para todos los roles autenticados)
-exports.fragranceRouter.get("/:id", middlewares_1.auth, (0, middlewares_1.authorize)(["superadmin", "manager", "client"]), controllers_1.fragranceController.get);
-// Actualizar una fragancia por ID (solo superadmin)
-exports.fragranceRouter.put("/:id", middlewares_1.auth, (0, middlewares_1.authorize)(["superadmin"]), (0, middlewares_1.validateSchema)(schemas_1.fragranceSchema), controllers_1.fragranceController.update);
-// Eliminar una fragancia por ID (solo superadmin)
-exports.fragranceRouter.delete("/:id", middlewares_1.auth, (0, middlewares_1.authorize)(["superadmin"]), controllers_1.fragranceController.delete);
+// Route to get all fragrances
+// Accessible only for superadmin, manager, and client roles
+exports.fragranceRouter.get("/", middlewares_1.auth, // Middleware to authenticate the user
+(0, middlewares_1.authorize)(["superadmin", "manager", "client"]), // Middleware to authorize specific roles
+controllers_1.fragranceController.getAll // Controller method to handle the request
+);
+// Route to create a new fragrance
+// Accessible only for superadmin role
+exports.fragranceRouter.post("/", middlewares_1.auth, // Middleware to authenticate the user
+(0, middlewares_1.authorize)(["superadmin"]), // Middleware to authorize the superadmin role
+(0, middlewares_1.validateSchema)(schemas_1.fragranceSchema), // Middleware to validate the request body against the schema
+controllers_1.fragranceController.create // Controller method to handle the request
+);
+// Route to get a fragrance by ID
+// Accessible for all authenticated roles
+exports.fragranceRouter.get("/:id", middlewares_1.auth, // Middleware to authenticate the user
+(0, middlewares_1.authorize)(["superadmin", "manager", "client"]), // Middleware to authorize specific roles
+controllers_1.fragranceController.get // Controller method to handle the request
+);
+// Route to update a fragrance by ID
+// Accessible only for superadmin role
+exports.fragranceRouter.put("/:id", middlewares_1.auth, // Middleware to authenticate the user
+(0, middlewares_1.authorize)(["superadmin"]), // Middleware to authorize the superadmin role
+(0, middlewares_1.validateSchema)(schemas_1.fragranceSchema), // Middleware to validate the request body against the schema
+controllers_1.fragranceController.update // Controller method to handle the request
+);
+// Route to delete a fragrance by ID
+// Accessible only for superadmin role
+exports.fragranceRouter.delete("/:id", middlewares_1.auth, // Middleware to authenticate the user
+(0, middlewares_1.authorize)(["superadmin"]), // Middleware to authorize the superadmin role
+controllers_1.fragranceController.delete // Controller method to handle the request
+);

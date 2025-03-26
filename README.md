@@ -1,7 +1,7 @@
 # Aromalife-ADN
 
 ## Descripción
-Este proyecto es una API RESTful desarrollada con Node.js y TypeScript fuertemente tipado, utilizando MongoDB como base de datos. Implementa un sistema de autenticación y autorización basado en JWT, junto con la gestión de usuarios y varios módulos interrelacionados para un sistema de velas aromáticas personalizadas.
+Este proyecto es una API RESTful desarrollada con Node.js y TypeScript fuertemente tipado, utilizando MongoDB como base de datos. Implementa un sistema de autenticación y autorización basado en JWT, junto con la gestión de usuarios y varios módulos interrelacionados para un sistema de compra de velas personalizadas.
 
 ## Características Principales
 - **Gestión de Usuarios:** CRUD de usuarios con roles (superadmin, client, manager).
@@ -13,6 +13,27 @@ Este proyecto es una API RESTful desarrollada con Node.js y TypeScript fuertemen
   - **Regalos:** Gestión de productos adicionales.
 - **Carrito de Compras:** Administración de compras con velas personalizadas y regalos opcionales.
 - **Pruebas Unitarias e Integración:** Implementadas con Jest y Postman.
+
+## Relación entre módulos
+
+La API establece una relación clara entre los diferentes módulos para garantizar una experiencia coherente y funcional. Por ejemplo, el módulo de **Velas Personalizadas** permite combinar elementos de los módulos de **Fragancias** y **Contenedores**, creando productos únicos según las preferencias del usuario. Además, el módulo de **Carrito de Compras** se relaciona directamente con las **Velas Personalizadas** y los **Regalos**, permitiendo a los usuarios agregar estos productos a su carrito para su posterior compra. Estas relaciones aseguran que los datos estén interconectados y que las operaciones CRUD reflejen las dependencias entre las entidades.
+
+
+
+## Modelo de Base de Datos
+
+El modelo de base de datos está diseñado para reflejar las relaciones entre las entidades principales de la aplicación. A continuación, se describen las relaciones más importantes:
+
+- **User:** Los usuarios pueden tener diferentes roles (superadmin, manager, client) y están relacionados con los carritos de compras que crean.
+- **Fragrance and Container:** Estas entidades representan los componentes básicos para personalizar velas. Cada vela personalizada se crea combinando una fragancia y un contenedor.
+- **Candle:** Están relacionadas tanto con las fragancias como con los contenedores, permitiendo crear productos únicos según las preferencias del usuario.
+- **Cart:** Cada carrito puede contener múltiples velas personalizadas y regalos, y está asociado a un usuario específico.
+- **Gift:** Son productos adicionales que los usuarios pueden agregar a su carrito junto con las velas personalizadas.
+
+Para más detalles, el modelo lógico de la base de datos se encuentra en el archivo PDF disponible en la ruta:
+```files
+docs/modelo de datos/Logical.pdf
+```
 
 ## Instalación y Configuración
 
@@ -93,6 +114,11 @@ Este proyecto es una API RESTful desarrollada con Node.js y TypeScript fuertemen
 - `DELETE /cart/:id` - Eliminar carrito (superadmin, manager, client).
 
 ## Pruebas
+Todas las pruebas unitarias e integración alcanzan más del 80% de cobertura, garantizando la validación de la lógica de negocio y el correcto funcionamiento de los módulos implimentados hasta ahora.
+Esto se puede evidenciar en el resultado de las pruebas en este archivo:
+```cmd
+docs/coverage/Icov-report/index.html
+```
 
 ### Pruebas Unitarias
 Ejecutar los tests con:
@@ -101,14 +127,39 @@ npm test --coverage
 ```
 Para visualizar los resultados de test, ingrese al siguiente archivo:
 ```cmd
-coverage/Icov-report/index.html
+docs/coverage/Icov-report/index.html
 ```
 
 ### Pruebas de Integración
-Se incluye un archivo de Postman (`Aromalife.postman_collection.json`) con pruebas de los endpoints.
+Se incluye un archivo de Postman (`Aromalife-ADN Integration Tests.postman_collection.json`) con pruebas de los endpoints.
+
+## Ejecutar Pruebas de Integración en Postman
+
+Se anexa el archivo.json con la Collection de Postman Exportada, con la ayuda de los scripts se ejecutan los tests y se asignan los valores a las variables para guardar el token y los id de algunos objetos.
+
+### Importar la Colección de Pruebas
+1. Abrir **Postman**.
+2. Ir a la pestaña **Collections** (Colecciones).
+3. Hacer clic en **Import** (Importar).
+4. Seleccionar el archivo:
+   ```
+   docs/postman/Aromalife-ADN Integration Tests.postman_collection.json
+   ```
+
+### Ejecutar las Pruebas con Collection Runner
+1. Ir a la pestaña **Collections**.
+2. Seleccionar la colección **Aromalife-ADN Integration Tests**.
+3. Hacer clic en el botón **Run** (Ejecutar).
+4. En la ventana del **Collection Runner**:
+   - Asegurarse de que la colección esté seleccionada.
+   - Verificar que el backend esté en ejecución con `yarn dev`.
+   - Hacer clic en **Run Aromalife-ADN Integration Tests**.
+
+### Revisar los Resultados
+- Postman ejecutará todas las pruebas y mostrará los resultados en tiempo real.
 
 ## Despliegue
-Este proyecto está desplegado en la plataforma **Vercel** con la url:
+Este proyecto ya se encuentra desplegado en la plataforma **Vercel** con la url:
 ```url
 https://aromalife-adn.vercel.app/
 ```

@@ -10,13 +10,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validateSchema = void 0;
+// Middleware to validate the request body against a given schema
 const validateSchema = (schema) => {
+    // Returning an asynchronous middleware function
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
+            // Parsing and validating the request body using the provided schema
             yield schema.parseAsync(req.body);
+            // If validation succeeds, proceed to the next middleware or route handler
             next();
         }
         catch (error) {
+            // If validation fails, respond with a 400 status and the error details
             res.status(400).json(error);
         }
     });
