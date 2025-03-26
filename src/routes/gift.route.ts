@@ -1,48 +1,61 @@
+// Importing the Router from Express
 import { Router } from "express";
+
+// Importing the gift controller
 import { giftController } from "../controllers";
+
+// Importing middlewares for authentication, schema validation, and authorization
 import { auth, validateSchema, authorize } from "../middlewares";
+
+// Importing the schema for gift validation
 import { giftSchema } from "../schemas";
 
+// Creating a new router instance for gift routes
 export const giftRouter = Router();
 
-// Obtener todos los regalos (accesible para superadmin, manager y client)
+// Route to get all gifts
+// Accessible for superadmin, manager, and client roles
 giftRouter.get(
   "/",
-  auth,
-  authorize(["superadmin", "manager", "client"]),
-  giftController.getAll
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin", "manager", "client"]), // Middleware to authorize specific roles
+  giftController.getAll // Controller method to handle the request
 );
 
-// Crear un nuevo regalo (solo superadmin)
+// Route to create a new gift
+// Accessible only for superadmin role
 giftRouter.post(
   "/",
-  auth,
-  authorize(["superadmin"]),
-  validateSchema(giftSchema),
-  giftController.create
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin"]), // Middleware to authorize the superadmin role
+  validateSchema(giftSchema), // Middleware to validate the request body against the schema
+  giftController.create // Controller method to handle the request
 );
 
-// Obtener un regalo por ID (accesible para todos los roles autenticados)
+// Route to get a gift by ID
+// Accessible for all authenticated roles
 giftRouter.get(
   "/:id",
-  auth,
-  authorize(["superadmin", "manager", "client"]),
-  giftController.get
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin", "manager", "client"]), // Middleware to authorize specific roles
+  giftController.get // Controller method to handle the request
 );
 
-// Actualizar un regalo por ID (solo superadmin)
+// Route to update a gift by ID
+// Accessible only for superadmin role
 giftRouter.put(
   "/:id",
-  auth,
-  authorize(["superadmin"]),
-  validateSchema(giftSchema),
-  giftController.update
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin"]), // Middleware to authorize the superadmin role
+  validateSchema(giftSchema), // Middleware to validate the request body against the schema
+  giftController.update // Controller method to handle the request
 );
 
-// Eliminar un regalo por ID (solo superadmin)
+// Route to delete a gift by ID
+// Accessible only for superadmin role
 giftRouter.delete(
   "/:id",
-  auth,
-  authorize(["superadmin"]),
-  giftController.delete
+  auth, // Middleware to authenticate the user
+  authorize(["superadmin"]), // Middleware to authorize the superadmin role
+  giftController.delete // Controller method to handle the request
 );

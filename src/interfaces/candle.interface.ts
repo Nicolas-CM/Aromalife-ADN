@@ -1,27 +1,29 @@
-import { IContainer } from "./container.interface";
-import { IFragrance } from "./fragrance.interface";
-import { IUser } from "./user.interface";
+// Importing related interfaces for dependencies
+import { IContainer } from "./container.interface"; // Interface for Container
+import { IFragrance } from "./fragrance.interface"; // Interface for Fragrance
+import { IUser } from "./user.interface"; // Interface for User
 
-// Interfaces para CandleCustomization
+// Interfaces for CandleCustomization
 
+// Main interface representing a candle customization
 export interface ICandleCustomization {
-  _id: string;
-  userId: IUser["_id"]; // Referencia a User
-  containerId: IContainer["_id"]; // Referencia a Container
-  fragranceId: IFragrance["_id"]; // Referencia a Fragrance
-  customImage: string;
-  status?: "draft" | "completed"; // Estado opcional con valor por defecto
-  aiMessage?: string;
-  vrPreview?: string;
+  _id: string; // Unique identifier for the customization
+  userId: IUser["_id"]; // Reference to the User who created the customization
+  containerId: IContainer["_id"]; // Reference to the Container used
+  fragranceId: IFragrance["_id"]; // Reference to the Fragrance used
+  customImage: string; // URL or path to the custom image
+  status?: "draft" | "completed"; // Optional status of the customization
+  aiMessage?: string; // Optional AI-generated message
+  vrPreview?: string; // Optional VR preview URL or data
 }
 
-// Entrada de datos para creación y actualización
+// Input interface for creating or updating a candle customization
 export interface CandleCustomizationInput {
-  userId: IUser["_id"];
-  containerId: IContainer["_id"];
-  fragranceId: IFragrance["_id"];
-  customImage: string;
-  status?: "draft" | "completed";
-  aiMessage?: string;
-  vrPreview?: string;
+  userId: IUser["_id"]; // Reference to the User
+  containerId: IContainer["_id"]; // Reference to the Container
+  fragranceId: IFragrance["_id"]; // Reference to the Fragrance
+  customImage: string; // URL or path to the custom image
+  status?: "draft" | "completed"; // Optional status of the customization
+  aiMessage?: string; // Optional AI-generated message
+  vrPreview?: string; // Optional VR preview URL or data
 }

@@ -1,38 +1,43 @@
+// Interface representing a user
 export interface IUser {
-  _id: string;
-  name: string;
-  email: string;
-  password: string;
-  age: number;
-  roles: ("client" | "superadmin" | "manager")[];
+  _id: string; // Unique identifier for the user
+  name: string; // Name of the user
+  email: string; // Email address of the user
+  password: string; // Password of the user
+  age: number; // Age of the user
+  roles: ("client" | "superadmin" | "manager")[]; // Array of roles assigned to the user
 }
 
+// Input interface for creating a new user
 export interface UserInput {
-  name: string;
-  email: string;
-  password: string;
-  age: number;
-  roles: ("client" | "superadmin" | "manager")[];
+  name: string; // Name of the user
+  email: string; // Email address of the user
+  password: string; // Password of the user
+  age: number; // Age of the user
+  roles: ("client" | "superadmin" | "manager")[]; // Array of roles assigned to the user
 }
 
+// Input interface for updating an existing user
 export interface UserInputUpdate {
-  name: string;
-  email: string;
-  age: number;
+  name: string; // Name of the user
+  email: string; // Email address of the user
+  age: number; // Age of the user
 }
 
+// Input interface for user login
 export interface UserLogin {
-  email: string;
-  password: string;
+  email: string; // Email address of the user
+  password: string; // Password of the user
 }
 
+// Response interface for user login
 export interface UserLoginResponse {
   user: {
-    id: string;
-    name: string;
-    email: string;
-    roles: ("client" | "superadmin" | "manager")[];
-    token: string;
-    age: number;
+    id: string; // Unique identifier for the user
+    name: string; // Name of the user
+    email: string; // Email address of the user
+    roles: ("client" | "superadmin" | "manager")[]; // Array of roles assigned to the user
+    token: string; // Authentication token for the user
+    age: number; // Age of the user
   };
 }
