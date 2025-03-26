@@ -18,7 +18,7 @@ describe("CandleCustomizationModel", () => {
             customImage: "https://example.com/image.jpg",
         });
         const error = customization.validateSync();
-        expect(error === null || error === void 0 ? void 0 : error.errors.user).toBeDefined();
+        expect(error === null || error === void 0 ? void 0 : error.errors.userId).toBeDefined();
     }));
     it("debe requerir containerId", () => __awaiter(void 0, void 0, void 0, function* () {
         const customization = new candle_model_1.CandleCustomizationModel({

@@ -10,6 +10,8 @@ describe("FragranceService", () => {
   let findOneAndUpdateStub: sinon.SinonStub;
   let findByIdAndDeleteStub: sinon.SinonStub;
 
+
+
   beforeEach(() => {
     createStub = sinon.stub(FragranceModel, "create");
     findStub = sinon.stub(FragranceModel, "find");
@@ -18,19 +20,21 @@ describe("FragranceService", () => {
     findByIdAndDeleteStub = sinon.stub(FragranceModel, "findByIdAndDelete");
   });
 
+
   afterEach(() => sinon.restore());
 
   describe("create()", () => {
     it("debe crear fragancia con datos válidos", async () => {
       const fragranceInput = {
-        name: "Lavanda",
+        name: "Lavandass",
         color: "#A020F0",
         price: 20000,
       };
 
       createStub.resolves({ ...fragranceInput, _id: "123" });
-
+      
       const result = await fragranceService.create(fragranceInput);
+      
 
       expect(result).toMatchObject(fragranceInput);
       expect(createStub.calledWith(fragranceInput)).toBeTruthy();

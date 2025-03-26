@@ -22,7 +22,12 @@ app.use("/containers", container_route_1.containerRouter);
 describe("Container Routes", () => {
     describe("POST /containers", () => {
         it("debe requerir rol superadmin", () => __awaiter(void 0, void 0, void 0, function* () {
-            jest.spyOn(jsonwebtoken_1.default, "verify").mockReturnValue({ roles: ["manager"] });
+            jest.spyOn(jsonwebtoken_1.default, "verify").mockReturnValue({
+                user: {
+                    id: "testUserId",
+                    roles: ["client"],
+                },
+            });
             const response = yield (0, supertest_1.default)(app)
                 .post("/containers")
                 .set("Authorization", "Bearer invalid.role.token")
@@ -33,12 +38,16 @@ describe("Container Routes", () => {
                 height: 10,
                 width: 5,
             });
-            expect(response.statusCode).toBe(401);
+            console.log(response);
+            expect(response.statusCode).toBe(403);
         }));
     });
     describe("PUT /containers/:id", () => {
         it("debe requerir rol superadmin", () => __awaiter(void 0, void 0, void 0, function* () {
-            jest.spyOn(jsonwebtoken_1.default, "verify").mockReturnValue({ roles: ["manager"] });
+            jest.spyOn(jsonwebtoken_1.default, "verify").mockReturnValue({ user: {
+                    id: "testUserId",
+                    roles: ["client"],
+                }, });
             const response = yield (0, supertest_1.default)(app)
                 .put("/containers/123")
                 .set("Authorization", "Bearer invalid.role.token")
@@ -49,16 +58,19 @@ describe("Container Routes", () => {
                 height: 10,
                 width: 5,
             });
-            expect(response.statusCode).toBe(401);
+            expect(response.statusCode).toBe(403);
         }));
     });
     describe("DELETE /containers/:id", () => {
         it("debe requerir rol superadmin", () => __awaiter(void 0, void 0, void 0, function* () {
-            jest.spyOn(jsonwebtoken_1.default, "verify").mockReturnValue({ roles: ["manager"] });
+            jest.spyOn(jsonwebtoken_1.default, "verify").mockReturnValue({ user: {
+                    id: "testUserId",
+                    roles: ["client"],
+                }, });
             const response = yield (0, supertest_1.default)(app)
                 .delete("/containers/123")
                 .set("Authorization", "Bearer invalid.role.token");
-            expect(response.statusCode).toBe(401);
+            expect(response.statusCode).toBe(403);
         }));
     });
 });

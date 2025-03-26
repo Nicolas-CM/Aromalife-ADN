@@ -32,7 +32,7 @@ describe("FragranceService", () => {
     describe("create()", () => {
         it("debe crear fragancia con datos válidos", () => __awaiter(void 0, void 0, void 0, function* () {
             const fragranceInput = {
-                name: "Lavanda",
+                name: "Lavandass",
                 color: "#A020F0",
                 price: 20000,
             };

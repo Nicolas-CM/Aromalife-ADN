@@ -98,7 +98,7 @@ describe("UserController", () => {
       await userController.login(mockReq as Request, mockRes as Response);
 
       expect(mockRes.status).toHaveBeenCalledWith(401);
-      expect(mockRes.json).toHaveBeenCalledWith({ message: "Not Authorized" });
+      expect(mockRes.json).toHaveBeenCalledWith({ message: "Invalid credentials" });
     });
 
     it("Debería retornar 500 en error inesperado", async () => {

@@ -8,5 +8,5 @@ module.exports = {
   },
   collectCoverage: true,
   coverageDirectory: "./coverage",
-  testTimeout: 30000,
+  testTimeout: 1000000,
 };

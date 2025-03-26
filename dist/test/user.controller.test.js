@@ -83,7 +83,7 @@ describe("UserController", () => {
                 .mockRejectedValue(new exceptions_1.AuthError("Invalid credentials"));
             yield controllers_1.userController.login(mockReq, mockRes);
             expect(mockRes.status).toHaveBeenCalledWith(401);
-            expect(mockRes.json).toHaveBeenCalledWith({ message: "Not Authorized" });
+            expect(mockRes.json).toHaveBeenCalledWith({ message: "Invalid credentials" });
         }));
         it("Debería retornar 500 en error inesperado", () => __awaiter(void 0, void 0, void 0, function* () {
             mockReq.body = { email: "error@test.com", password: "error" };

@@ -8,8 +8,14 @@ app.use(express.json());
 app.use("/customizations", candleRouter);
 
 jest.spyOn(jwt, "verify").mockImplementation((token) => {
-  if (token === "valid.role.token") return { roles: ["superadmin"] };
-  if (token === "invalid.role.token") return { roles: ["client"] };
+  if (token === "valid.role.token") return { user: {
+    id: "testUserId2",
+    roles: ["superadmin"],
+  },};
+  if (token === "invalid.role.token") return { user: {
+    id: "testUserId",
+    roles: ["client"],
+  }, };
   throw new Error("Invalid token");
 });
 
@@ -21,28 +27,28 @@ describe("CandleCustomization Routes", () => {
     });
 
     it("debe requerir rol superadmin", async () => {
-        const response = await request(app)
-          .delete("/customizations/641a9f0b2f7b88a9b8e7c999")
-          .set("Authorization", "Bearer invalid.role.token");
-  
-        expect(response.statusCode).toBe(401);
-      });
+      const response = await request(app)
+        .delete("/customizations/641a9f0b2f7b88a9b8e7c999")
+        .set("Authorization", "Bearer invalid.role.token");
+
+      expect(response.statusCode).toBe(403);
+    });
   });
 
-    describe("PUT /customizations/:id", () => {
-        it("debe requerir autenticación", async () => {
-        const response = await request(app).put("/customizations/1");
-        expect(response.statusCode).toBe(401);
-        });
-    
-        it("debe requerir rol superadmin", async () => {
-        const response = await request(app)
-            .put("/customizations/641a9f0b2f7b88a9b8e7c999")
-            .set("Authorization", "Bearer invalid.role.token");
-    
-        expect(response.statusCode).toBe(401);
-        });
+  describe("PUT /customizations/:id", () => {
+    it("debe requerir autenticación", async () => {
+      const response = await request(app).put("/customizations/1");
+      expect(response.statusCode).toBe(401);
     });
+
+    it("debe requerir rol superadmin", async () => {
+      const response = await request(app)
+        .put("/customizations/641a9f0b2f7b88a9b8e7c999")
+        .set("Authorization", "Bearer invalid.role.token");
+
+      expect(response.statusCode).toBe(403);
+    });
+  });
 
   describe("GET /customizations/:id", () => {
     it("debe requerir autenticación", async () => {
@@ -63,7 +69,7 @@ describe("CandleCustomization Routes", () => {
         .delete("/customizations/641a9f0b2f7b88a9b8e7c999")
         .set("Authorization", "Bearer invalid.role.token");
 
-      expect(response.statusCode).toBe(401);
+      expect(response.statusCode).toBe(403);
     });
   });
 });

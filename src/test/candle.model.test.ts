@@ -9,8 +9,10 @@ describe("CandleCustomizationModel", () => {
     });
 
     const error = customization.validateSync();
-    expect(error?.errors.user).toBeDefined();
+    expect(error?.errors.userId).toBeDefined();
   });
+
+  
 
   it("debe requerir containerId", async () => {
     const customization = new CandleCustomizationModel({

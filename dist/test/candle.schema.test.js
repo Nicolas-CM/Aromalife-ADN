@@ -4,7 +4,7 @@ const candle_schema_1 = require("../schemas/candle.schema");
 describe("CandleCustomization Schema", () => {
     it("debe requerir URL de imagen válida", () => {
         const invalidData = {
-            user: "641a9f0b2f7b88a9b8e7c888",
+            userId: "641a9f0b2f7b88a9b8e7c888",
             containerId: "641a9f0b2f7b88a9b8e7c777",
             fragranceId: "641a9f0b2f7b88a9b8e7c666",
             customImage: "no-es-url",
@@ -18,7 +18,7 @@ describe("CandleCustomization Schema", () => {
     });
     it("debe permitir mensajes de IA opcionales", () => {
         const validData = {
-            user: "641a9f0b2f7b88a9b8e7c888",
+            userId: "641a9f0b2f7b88a9b8e7c888",
             containerId: "641a9f0b2f7b88a9b8e7c777",
             fragranceId: "641a9f0b2f7b88a9b8e7c666",
             customImage: "https://example.com/image.jpg",
@@ -30,7 +30,7 @@ describe("CandleCustomization Schema", () => {
     describe("containerId y fragranceId", () => {
         it("deben tener formato de ObjectId válido", () => {
             const invalidData = {
-                user: "641a9f0b2f7b88a9b8e7c888",
+                userId: "641a9f0b2f7b88a9b8e7c888",
                 containerId: "invalid-id",
                 fragranceId: "invalid-id",
                 customImage: "https://example.com/image.jpg",
@@ -45,7 +45,7 @@ describe("CandleCustomization Schema", () => {
     });
     it("debe requerir un estado válido", () => {
         const invalidData = {
-            user: "641a9f0b2f7b88a9b8e7c888",
+            userId: "641a9f0b2f7b88a9b8e7c888",
             containerId: "641a9f0b2f7b88a9b8e7c777",
             fragranceId: "641a9f0b2f7b88a9b8e7c666",
             customImage: "https://example.com/image.jpg",

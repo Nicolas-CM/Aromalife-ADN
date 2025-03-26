@@ -26,12 +26,15 @@ describe("Cart Routes", () => {
             expect(response.statusCode).toBe(401);
         }));
         it("debe validar esquema con token válido", () => __awaiter(void 0, void 0, void 0, function* () {
-            jest.spyOn(jsonwebtoken_1.default, "verify").mockReturnValue({ roles: ["client"] });
+            jest.spyOn(jsonwebtoken_1.default, "verify").mockReturnValue({ user: {
+                    id: "testUserId",
+                    roles: ["superadmin"],
+                }, });
             const response = yield (0, supertest_1.default)(app)
                 .post("/carts")
                 .set("Authorization", "Bearer valid.token")
-                .send({ userId: "invalid" });
-            expect(response.statusCode).toBe(401);
+                .send({ userId: "validUserId", items: [{ candleId: "validCandleId" }] });
+            expect(response.statusCode).toBe(400);
         }));
     });
 });

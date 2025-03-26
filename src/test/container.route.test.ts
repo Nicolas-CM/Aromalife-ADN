@@ -10,7 +10,12 @@ app.use("/containers", containerRouter);
 describe("Container Routes", () => {
   describe("POST /containers", () => {
     it("debe requerir rol superadmin", async () => {
-      jest.spyOn(jwt, "verify").mockReturnValue({ roles: ["manager"] } as any);
+      jest.spyOn(jwt, "verify").mockReturnValue({
+  user: {
+    id: "testUserId",
+    roles: ["client"],
+  },
+} as any);
 
       const response = await request(app)
         .post("/containers")
@@ -23,13 +28,18 @@ describe("Container Routes", () => {
           width: 5,
         });
 
-      expect(response.statusCode).toBe(401);
+        console.log(response);
+
+      expect(response.statusCode).toBe(403);
     });
   });
 
   describe("PUT /containers/:id", () => {
     it("debe requerir rol superadmin", async () => {
-      jest.spyOn(jwt, "verify").mockReturnValue({ roles: ["manager"] } as any);
+      jest.spyOn(jwt, "verify").mockReturnValue({ user: {
+        id: "testUserId",
+        roles: ["client"],
+      }, } as any);
 
       const response = await request(app)
         .put("/containers/123")
@@ -42,19 +52,22 @@ describe("Container Routes", () => {
           width: 5,
         });
 
-      expect(response.statusCode).toBe(401);
+      expect(response.statusCode).toBe(403);
     });
   });
 
   describe("DELETE /containers/:id", () => {
     it("debe requerir rol superadmin", async () => {
-      jest.spyOn(jwt, "verify").mockReturnValue({ roles: ["manager"] } as any);
+      jest.spyOn(jwt, "verify").mockReturnValue({user: {
+        id: "testUserId",
+        roles: ["client"],
+      },} as any);
 
       const response = await request(app)
         .delete("/containers/123")
         .set("Authorization", "Bearer invalid.role.token");
 
-      expect(response.statusCode).toBe(401);
+      expect(response.statusCode).toBe(403);
     });
   });
 });

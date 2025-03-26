@@ -7,7 +7,7 @@ describe("Cart Schema", () => {
             userId: "507f1f77bcf86cd799439011",
             items: [
                 {
-                    productId: "5ebbe53423b8c7a9d3456789",
+                    candleId: "5ebbe53423b8c7a9d3456789",
                     quantity: 2,
                 },
             ],

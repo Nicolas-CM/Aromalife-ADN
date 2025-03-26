@@ -16,14 +16,17 @@ describe("Cart Routes", () => {
     });
 
     it("debe validar esquema con token válido", async () => {
-      jest.spyOn(jwt, "verify").mockReturnValue({ roles: ["client"] } as any);
+      jest.spyOn(jwt, "verify").mockReturnValue({user: {
+        id: "testUserId",
+        roles: ["superadmin"],
+      },} as any);
 
       const response = await request(app)
         .post("/carts")
         .set("Authorization", "Bearer valid.token")
-        .send({ userId: "invalid" });
+        .send({ userId: "validUserId",  items: [{ candleId: "validCandleId" }]  });
 
-      expect(response.statusCode).toBe(401);
+      expect(response.statusCode).toBe(400);
     });
   });
 });

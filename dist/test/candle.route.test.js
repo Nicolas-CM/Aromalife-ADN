@@ -21,9 +21,15 @@ app.use(express_1.default.json());
 app.use("/customizations", candle_route_1.candleRouter);
 jest.spyOn(jsonwebtoken_1.default, "verify").mockImplementation((token) => {
     if (token === "valid.role.token")
-        return { roles: ["superadmin"] };
+        return { user: {
+                id: "testUserId2",
+                roles: ["superadmin"],
+            }, };
     if (token === "invalid.role.token")
-        return { roles: ["client"] };
+        return { user: {
+                id: "testUserId",
+                roles: ["client"],
+            }, };
     throw new Error("Invalid token");
 });
 describe("CandleCustomization Routes", () => {
@@ -36,7 +42,7 @@ describe("CandleCustomization Routes", () => {
             const response = yield (0, supertest_1.default)(app)
                 .delete("/customizations/641a9f0b2f7b88a9b8e7c999")
                 .set("Authorization", "Bearer invalid.role.token");
-            expect(response.statusCode).toBe(401);
+            expect(response.statusCode).toBe(403);
         }));
     });
     describe("PUT /customizations/:id", () => {
@@ -48,7 +54,7 @@ describe("CandleCustomization Routes", () => {
             const response = yield (0, supertest_1.default)(app)
                 .put("/customizations/641a9f0b2f7b88a9b8e7c999")
                 .set("Authorization", "Bearer invalid.role.token");
-            expect(response.statusCode).toBe(401);
+            expect(response.statusCode).toBe(403);
         }));
     });
     describe("GET /customizations/:id", () => {
@@ -66,7 +72,7 @@ describe("CandleCustomization Routes", () => {
             const response = yield (0, supertest_1.default)(app)
                 .delete("/customizations/641a9f0b2f7b88a9b8e7c999")
                 .set("Authorization", "Bearer invalid.role.token");
-            expect(response.statusCode).toBe(401);
+            expect(response.statusCode).toBe(403);
         }));
     });
 });
