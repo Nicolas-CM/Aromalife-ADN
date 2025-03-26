@@ -7,6 +7,6 @@ module.exports = {
     "^@/(.*)$": "<rootDir>/src/$1", // Si usas alias de importación
   },
   collectCoverage: true,
-  coverageDirectory: "./coverage",
+  coverageDirectory: ".docs/coverage",
   testTimeout: 30000,
 };

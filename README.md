@@ -101,7 +101,7 @@ npm test --coverage
 ```
 Para visualizar los resultados de test, ingrese al siguiente archivo:
 ```cmd
-coverage/Icov-report/index.html
+docs/coverage/Icov-report/index.html
 ```
 
 ### Pruebas de Integración
@@ -117,7 +117,7 @@ Se anexa el archivo.json con la Collection de Postman Exportada, con la ayuda de
 3. Hacer clic en **Import** (Importar).
 4. Seleccionar el archivo:
    ```
-   postman/Aromalife-ADN Integration Tests.postman_collection.json
+   docs/postman/Aromalife-ADN Integration Tests.postman_collection.json
    ```
 
 ### Ejecutar las Pruebas con Collection Runner
