@@ -9,6 +9,7 @@ describe("FragranceService", () => {
   let findByIdStub: sinon.SinonStub;
   let findOneAndUpdateStub: sinon.SinonStub;
   let findByIdAndDeleteStub: sinon.SinonStub;
+  let findOne: sinon.SinonStub;
 
 
 
@@ -18,6 +19,7 @@ describe("FragranceService", () => {
     findByIdStub = sinon.stub(FragranceModel, "findById");
     findOneAndUpdateStub = sinon.stub(FragranceModel, "findOneAndUpdate");
     findByIdAndDeleteStub = sinon.stub(FragranceModel, "findByIdAndDelete");
+    findOne = sinon.stub(FragranceModel, "findOne");
   });
 
 
@@ -32,6 +34,7 @@ describe("FragranceService", () => {
       };
 
       createStub.resolves({ ...fragranceInput, _id: "123" });
+      findOne.resolves(null);
       
       const result = await fragranceService.create(fragranceInput);
       

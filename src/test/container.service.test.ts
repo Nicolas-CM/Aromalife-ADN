@@ -9,6 +9,7 @@ describe("ContainerService", () => {
   let findByIdStub: sinon.SinonStub;
   let findOneAndUpdateStub: sinon.SinonStub;
   let findByIdAndDeleteStub: sinon.SinonStub;
+  let findOneStub: sinon.SinonStub;
 
   beforeEach(() => {
     createStub = sinon.stub(ContainerModel, "create");
@@ -16,6 +17,7 @@ describe("ContainerService", () => {
     findByIdStub = sinon.stub(ContainerModel, "findById");
     findOneAndUpdateStub = sinon.stub(ContainerModel, "findOneAndUpdate");
     findByIdAndDeleteStub = sinon.stub(ContainerModel, "findByIdAndDelete");
+    findOneStub = sinon.stub(ContainerModel, "findOne");
   });
 
   afterEach(() => sinon.restore());
@@ -31,6 +33,8 @@ describe("ContainerService", () => {
       };
 
       createStub.resolves({ ...containerInput, _id: "123", diameter: 15 });
+
+      findOneStub.resolves(null);
 
       const result = await containerService.create(containerInput);
 

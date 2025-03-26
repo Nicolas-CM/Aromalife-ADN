@@ -21,12 +21,14 @@ describe("ContainerService", () => {
     let findByIdStub;
     let findOneAndUpdateStub;
     let findByIdAndDeleteStub;
+    let findOneStub;
     beforeEach(() => {
         createStub = sinon_1.default.stub(models_1.ContainerModel, "create");
         findStub = sinon_1.default.stub(models_1.ContainerModel, "find");
         findByIdStub = sinon_1.default.stub(models_1.ContainerModel, "findById");
         findOneAndUpdateStub = sinon_1.default.stub(models_1.ContainerModel, "findOneAndUpdate");
         findByIdAndDeleteStub = sinon_1.default.stub(models_1.ContainerModel, "findByIdAndDelete");
+        findOneStub = sinon_1.default.stub(models_1.ContainerModel, "findOne");
     });
     afterEach(() => sinon_1.default.restore());
     describe("create()", () => {
@@ -39,6 +41,7 @@ describe("ContainerService", () => {
                 width: 10,
             };
             createStub.resolves(Object.assign(Object.assign({}, containerInput), { _id: "123", diameter: 15 }));
+            findOneStub.resolves(null);
             const result = yield services_1.containerService.create(containerInput);
             expect(result).toMatchObject(Object.assign(Object.assign({}, containerInput), { diameter: 15 }));
             expect(createStub.calledWith(containerInput)).toBeTruthy();

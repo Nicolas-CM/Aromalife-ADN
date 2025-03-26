@@ -21,12 +21,14 @@ describe("FragranceService", () => {
     let findByIdStub;
     let findOneAndUpdateStub;
     let findByIdAndDeleteStub;
+    let findOne;
     beforeEach(() => {
         createStub = sinon_1.default.stub(models_1.FragranceModel, "create");
         findStub = sinon_1.default.stub(models_1.FragranceModel, "find");
         findByIdStub = sinon_1.default.stub(models_1.FragranceModel, "findById");
         findOneAndUpdateStub = sinon_1.default.stub(models_1.FragranceModel, "findOneAndUpdate");
         findByIdAndDeleteStub = sinon_1.default.stub(models_1.FragranceModel, "findByIdAndDelete");
+        findOne = sinon_1.default.stub(models_1.FragranceModel, "findOne");
     });
     afterEach(() => sinon_1.default.restore());
     describe("create()", () => {
@@ -37,6 +39,7 @@ describe("FragranceService", () => {
                 price: 20000,
             };
             createStub.resolves(Object.assign(Object.assign({}, fragranceInput), { _id: "123" }));
+            findOne.resolves(null);
             const result = yield services_1.fragranceService.create(fragranceInput);
             expect(result).toMatchObject(fragranceInput);
             expect(createStub.calledWith(fragranceInput)).toBeTruthy();
