@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CandleCustomizationModel = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const candleCustomizationSchema = new mongoose_1.default.Schema({
-    user: { type: String, required: true },
+    userId: { type: String, required: true },
     containerId: {
         type: mongoose_1.default.Schema.Types.ObjectId,
         ref: "Container",

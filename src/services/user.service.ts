@@ -89,14 +89,14 @@ class UserService {
         userLogin.email
       );
       if (userExists === null) {
-        throw new AuthError("Not Authorized");
+        throw new AuthError("User or password incorrect");
       }
       const isMatch: boolean = await bcrypt.compare(
         userLogin.password,
         userExists.password
       );
       if (!isMatch) {
-        throw new AuthError("Not Authorized");
+        throw new AuthError("User or password incorrect");
         console.log("No hacen match");
       }
       return {

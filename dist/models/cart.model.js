@@ -13,9 +13,9 @@ const cartSchema = new mongoose_1.default.Schema({
     },
     items: [
         {
-            productId: {
+            candleId: {
                 type: mongoose_1.default.Schema.Types.ObjectId,
-                ref: "Product",
+                ref: "CandleCustomization",
                 required: true,
             },
             quantity: { type: Number, required: true, min: 1 },

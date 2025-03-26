@@ -19,6 +19,7 @@ class CartController {
                 res.status(201).json(newCart);
             }
             catch (error) {
+                console.log(error);
                 res.status(400).json(error);
             }
         });

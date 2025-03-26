@@ -97,11 +97,11 @@ class UserService {
             try {
                 const userExists = yield this.findByEmail(userLogin.email);
                 if (userExists === null) {
-                    throw new exceptions_1.AuthError("Not Authorized");
+                    throw new exceptions_1.AuthError("User or password incorrect");
                 }
                 const isMatch = yield bcrypt_1.default.compare(userLogin.password, userExists.password);
                 if (!isMatch) {
-                    throw new exceptions_1.AuthError("Not Authorized");
+                    throw new exceptions_1.AuthError("User or password incorrect");
                     console.log("No hacen match");
                 }
                 return {

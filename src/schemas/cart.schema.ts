@@ -1,7 +1,7 @@
 import { object, string, array, number } from "zod";
 
 export const cartItemSchema = object({
-  productId: string({ required_error: "Product ID is required" }).regex(
+  candleId: string({ required_error: "Product ID is required" }).regex(
     /^[a-fA-F0-9]{24}$/,
     "Invalid ObjectId format"
   ),

@@ -46,7 +46,6 @@ const auth = (req, res, next) => {
         token = token.replace("Bearer ", "");
         const decoded = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET || "secret");
         req.body.loggedUser = decoded.user;
-        req.params.id = decoded.user.id;
         next();
     }
     catch (error) {

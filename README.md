@@ -105,7 +105,7 @@ coverage/Icov-report/index.html
 ```
 
 ### Pruebas de Integración
-Se incluye un archivo de Postman (`postman_collection.json`) con pruebas de los endpoints.
+Se incluye un archivo de Postman (`Aromalife.postman_collection.json`) con pruebas de los endpoints.
 
 ## Despliegue
 Este proyecto está desplegado en la plataforma **Vercel** con la url:

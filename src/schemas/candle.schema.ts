@@ -1,7 +1,7 @@
 import { object, string, enum as zodEnum } from "zod";
 
 export const candleCustomizationSchema = object({
-  user: string({ required_error: "User ID is required" }),
+  userId: string({ required_error: "User ID is required" }),
   containerId: string({ required_error: "Container ID is required" }).regex(
     /^[a-fA-F0-9]{24}$/,
     "Invalid ObjectId format"

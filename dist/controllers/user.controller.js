@@ -75,6 +75,7 @@ class Usercontroller {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = req.params.id;
+                console.log(id);
                 const user = yield services_1.userService.delete(id);
                 if (user === null) {
                     res.status(404).json({ message: `User with id ${id} not found` });
@@ -96,7 +97,7 @@ class Usercontroller {
             catch (error) {
                 //*** Not authorized */
                 if (error instanceof exceptions_1.AuthError) {
-                    res.status(401).json({ message: "Not Authorized" });
+                    res.status(401).json({ message: error.message });
                     return;
                 }
                 res.status(500).json(error);
