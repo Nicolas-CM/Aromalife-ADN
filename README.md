@@ -105,7 +105,32 @@ coverage/Icov-report/index.html
 ```
 
 ### Pruebas de Integración
-Se incluye un archivo de Postman (`Aromalife.postman_collection.json`) con pruebas de los endpoints.
+Se incluye un archivo de Postman (`Aromalife-ADN Integration Tests.postman_collection.json`) con pruebas de los endpoints.
+
+## Ejecutar Pruebas de Integración en Postman
+
+Se anexa el archivo.json con la Collection de Postman Exportada, con la ayuda de los scripts se ejecutan los tests y se asignan los valores a las variables para guardar el token y los id de algunos objetos.
+
+### Importar la Colección de Pruebas
+1. Abrir **Postman**.
+2. Ir a la pestaña **Collections** (Colecciones).
+3. Hacer clic en **Import** (Importar).
+4. Seleccionar el archivo:
+   ```
+   postman/Aromalife-ADN Integration Tests.postman_collection.json
+   ```
+
+### Ejecutar las Pruebas con Collection Runner
+1. Ir a la pestaña **Collections**.
+2. Seleccionar la colección **Aromalife-ADN Integration Tests**.
+3. Hacer clic en el botón **Run** (Ejecutar).
+4. En la ventana del **Collection Runner**:
+   - Asegurarse de que la colección esté seleccionada.
+   - Verificar que el backend esté en ejecución con `yarn dev`.
+   - Hacer clic en **Run Aromalife-ADN Integration Tests**.
+
+### Revisar los Resultados
+- Postman ejecutará todas las pruebas y mostrará los resultados en tiempo real.
 
 ## Despliegue
 Este proyecto está desplegado en la plataforma **Vercel** con la url:

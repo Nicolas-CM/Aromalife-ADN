@@ -1,0 +1,564 @@
+{
+	"info": {
+		"_postman_id": "6d947392-eaec-45d2-adde-ecadd003a752",
+		"name": "Aromalife-ADN Integration Tests",
+		"description": "Pruebas de integración completas para la API Aromalife-ADN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "35088863",
+		"_collection_link": "https://adn333.postman.co/workspace/b615c2c1-b919-41c1-a81d-72176e29e87b/collection/35088863-6d947392-eaec-45d2-adde-ecadd003a752?action=share&source=collection_link&creator=35088863"
+	},
+	"item": [
+		{
+			"name": "0. Auth",
+			"item": [
+				{
+					"name": "Login - Get Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has token\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.user.token).to.exist;",
+									"    pm.collectionVariables.set(\"jwt_token\", jsonData.user.token);",
+									"    pm.globals.set(\"jwt_token\", jsonData.user.token);",
+									"    pm.collectionVariables.set(\"jwt_token\", jsonData.user.token);",
+									"    pm.environment.set(\"jwt_token\", jsonData.user.token);",
+									"    console.log(\"Token guardado: \" + jsonData.user.token);",
+									"    pm.collectionVariables.set(\"user_id\", jsonData.user.id);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"superadmin@example.com\",\n  \"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/user/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "1. Users",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"test_user_id\", jsonData._id);",
+									"",
+									"pm.test(\"Response has user data\", function() {",
+									"    pm.expect(jsonData).to.have.property('_id');",
+									"    pm.expect(jsonData.email).to.eql(\"test.user@example.com\");",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test.user@example.com\",\n  \"password\": \"test1234\",\n  \"age\": 25,\n  \"roles\": [\"client\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/user/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"User matches created data\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.email).to.eql(\"test.user@example.com\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/user/{{test_user_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Products",
+			"item": [
+				{
+					"name": "2.1 Containers",
+					"item": [
+						{
+							"name": "Create Container",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function() {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"var jsonData = pm.response.json();",
+											"pm.collectionVariables.set(\"container_id\", jsonData._id);",
+											"",
+											"pm.test(\"Container created correctly\", function() {",
+											"    pm.expect(jsonData.name).to.eql(\"Test Container\");",
+											"    pm.expect(jsonData.price).to.eql(25000);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Test Container\",\n  \"description\": \"Un contenedor grande ideal para velas aromáticas.\",\n  \"imageUrl\": \"https://example.com/jarra-grande.jpg\",\n  \"price\": 25000,\n  \"height\": 15,\n  \"width\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/container/"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "2.2 Fragrances",
+					"item": [
+						{
+							"name": "Create Fragrance",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function() {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"var jsonData = pm.response.json();",
+											"pm.collectionVariables.set(\"fragrance_id\", jsonData._id);",
+											"",
+											"pm.test(\"Fragrance created correctly\", function() {",
+											"    pm.expect(jsonData.name).to.eql(\"Test Fragrance\");",
+											"    pm.expect(jsonData.color).to.eql(\"#FFFFFF\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Test Fragrance\",\n  \"color\": \"#FFFFFF\",\n  \"price\": 4.99\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/fragrance/"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "2.3 Candles",
+					"item": [
+						{
+							"name": "Create Candle Customization",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function() {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"var jsonData = pm.response.json();",
+											"pm.collectionVariables.set(\"candle_id\", jsonData._id);",
+											"",
+											"pm.test(\"Candle created correctly\", function() {",
+											"    pm.expect(jsonData.containerId).to.eql(pm.collectionVariables.get(\"container_id\"));",
+											"    pm.expect(jsonData.fragranceId).to.eql(pm.collectionVariables.get(\"fragrance_id\"));",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"userId\": \"{{test_user_id}}\", \n  \"containerId\": \"{{container_id}}\",\n  \"fragranceId\": \"{{fragrance_id}}\",\n  \"customImage\": \"https://example.com/custom-image.jpg\",\n  \"status\": \"draft\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/candle/"
+							},
+							"response": []
+						},
+						{
+							"name": "Get all Candles",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{base_url}}/candle"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "3. Gifts",
+			"item": [
+				{
+					"name": "Create Gift",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"gift_id\", jsonData._id);",
+									"",
+									"pm.test(\"Gift created correctly\", function() {",
+									"    pm.expect(jsonData.name).to.eql(\"Test Gift\");",
+									"    pm.expect(jsonData.price).to.eql(14.99);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test Gift\",\n  \"description\": \"Test gift description\",\n  \"price\": 14.99,\n  \"imageUrl\": \"https://example.com/gift.jpg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/gift/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. Cart",
+			"item": [
+				{
+					"name": "Create Cart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function() {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"cart_id\", jsonData._id);",
+									"",
+									"pm.test(\"Cart created correctly\", function() {",
+									"    pm.expect(jsonData.items.length).to.eql(1);",
+									"    pm.expect(jsonData.gifts.length).to.eql(1);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": \"{{test_user_id}}\",\n  \"items\": [\n    {\n      \"candleId\": \"{{candle_id}}\",\n      \"quantity\": 2\n    }\n  ],\n  \"gifts\": [\n    {\n      \"giftId\": \"{{gift_id}}\",\n      \"quantity\": 1\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/cart/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cart by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function() {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Cart contains correct items\", function() {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.items[0].candleId).to.eql(pm.collectionVariables.get(\"candle_id\"));",
+									"    pm.expect(jsonData.gifts[0].giftId).to.eql(pm.collectionVariables.get(\"gift_id\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/cart/{{cart_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Carts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/cart/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete all",
+			"item": [
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/user/{{test_user_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete container",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/container/{{container_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete fragrance",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/fragrance/{{fragrance_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete candle",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/candle/{{candle_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete gift",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/gift/{{gift_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{base_url}}/cart/{{cart_id}}"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "{{jwt_token}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "jwt_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "user_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "test_user_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "container_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "fragrance_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "candle_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "gift_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "cart_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
