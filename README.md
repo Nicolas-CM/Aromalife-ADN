@@ -33,6 +33,7 @@ El modelo de base de datos está diseñado para reflejar las relaciones entre la
 Para más detalles, el modelo lógico de la base de datos se encuentra en el archivo PDF disponible en la ruta:
 ```files
 docs/modelo de datos/Logical.pdf
+```
 
 ## Instalación y Configuración
 
