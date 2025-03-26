@@ -1,7 +1,7 @@
 # Aromalife-ADN
 
 ## Descripción
-Este proyecto es una API RESTful desarrollada con Node.js y TypeScript fuertemente tipado, utilizando MongoDB como base de datos. Implementa un sistema de autenticación y autorización basado en JWT, junto con la gestión de usuarios y varios módulos interrelacionados para un sistema de velas aromáticas personalizadas.
+Este proyecto es una API RESTful desarrollada con Node.js y TypeScript fuertemente tipado, utilizando MongoDB como base de datos. Implementa un sistema de autenticación y autorización basado en JWT, junto con la gestión de usuarios y varios módulos interrelacionados para un sistema de compra de velas personalizadas.
 
 ## Características Principales
 - **Gestión de Usuarios:** CRUD de usuarios con roles (superadmin, client, manager).
@@ -13,6 +13,19 @@ Este proyecto es una API RESTful desarrollada con Node.js y TypeScript fuertemen
   - **Regalos:** Gestión de productos adicionales.
 - **Carrito de Compras:** Administración de compras con velas personalizadas y regalos opcionales.
 - **Pruebas Unitarias e Integración:** Implementadas con Jest y Postman.
+
+## Relación entre módulos
+
+La API establece una relación clara entre los diferentes módulos para garantizar una experiencia coherente y funcional. Por ejemplo, el módulo de **Velas Personalizadas** permite combinar elementos de los módulos de **Fragancias** y **Contenedores**, creando productos únicos según las preferencias del usuario. Además, el módulo de **Carrito de Compras** se relaciona directamente con las **Velas Personalizadas** y los **Regalos**, permitiendo a los usuarios agregar estos productos a su carrito para su posterior compra. Estas relaciones aseguran que los datos estén interconectados y que las operaciones CRUD reflejen las dependencias entre las entidades.
+
+
+
+## Modelo de base de datos
+
+El modelo de base de datos de este proyecto se puede visualizar en el archivo pdf en la ruta:
+```files
+docs/modelo de datos/Logical.pdf
+```
 
 ## Instalación y Configuración
 
@@ -93,6 +106,7 @@ Este proyecto es una API RESTful desarrollada con Node.js y TypeScript fuertemen
 - `DELETE /cart/:id` - Eliminar carrito (superadmin, manager, client).
 
 ## Pruebas
+Todas las pruebas unitarias e integración alcanzan más del 80% de cobertura, garantizando la validación de la lógica de negocio y el correcto funcionamiento de los módulos implimentados hasta ahora.
 
 ### Pruebas Unitarias
 Ejecutar los tests con:
@@ -133,7 +147,7 @@ Se anexa el archivo.json con la Collection de Postman Exportada, con la ayuda de
 - Postman ejecutará todas las pruebas y mostrará los resultados en tiempo real.
 
 ## Despliegue
-Este proyecto está desplegado en la plataforma **Vercel** con la url:
+Este proyecto ya se encuentra desplegado en la plataforma **Vercel** con la url:
 ```url
 https://aromalife-adn.vercel.app/
 ```
